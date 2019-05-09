@@ -21,13 +21,14 @@ func Router() *iris.Application {
 	mvc.New(app.Party("/second")).
 		Handle(new(controller.Secoud))
 
+	mvc.New(app.Party("/config")).
+		Handle(new(controller.Find))
 	return app
 }
 
 func preSetting(app *iris.Application) {
 	// 定义错误显示级别
 	app.Logger().SetLevel("debug")
-
 	customLogger := logger.New(logger.Config{
 		//状态显示状态代码
 		Status: true,
@@ -50,5 +51,4 @@ func preSetting(app *iris.Application) {
 		customLogger,
 		//recover2.New(),
 	)
-
 }
