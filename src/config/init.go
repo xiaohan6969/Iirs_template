@@ -1,4 +1,4 @@
-package server
+package config
 
 import (
 	"github.com/pelletier/go-toml"
@@ -8,7 +8,7 @@ import (
 var Config *toml.Tree
 
 func init() {
-	path := "config/main.tml"
+	path := "src/config/config.toml"
 	config, err := toml.LoadFile(path)
 	if err != nil {
 		log.Fatal(err)

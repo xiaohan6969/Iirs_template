@@ -1,0 +1,19 @@
+#DisablePathCorrection = false
+#EnablePathEscape = false
+#FireMethodNotAllowed = true
+#DisableBodyConsumptionOnUnmarshal = false
+#TimeFormat = "Mon, 01 Jan 2006 15:04:05 GMT"
+#Charset = "UTF-8"
+[Other]
+    MyServerName = "iris"
+[master]
+    host = "localhost"
+    port = "8080"
+
+[mysql]
+    user = "root"
+    password = "mysql"
+    database = "test"
+    host = "localhost"
+    port = "3306"
+    ip = "127.0.0.1"
