@@ -10,6 +10,7 @@ import (
 
 func Router() *iris.Application {
 	app := iris.Default()
+
 	//for path, con_troller := range Parties {
 	//	mvc.New(app.Party(path)).Handle(con_troller)
 	//}
@@ -19,5 +20,6 @@ func Router() *iris.Application {
 
 	mvc.New(app.Party("/mysql")).
 		Handle(new(sql.Query))
+
 	return app
 }
