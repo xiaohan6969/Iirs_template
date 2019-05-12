@@ -1,4 +1,4 @@
-package controller
+package login
 
 import (
 	"github.com/kataras/iris"
