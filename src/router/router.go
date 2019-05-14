@@ -2,23 +2,16 @@ package router
 
 import (
 	"controller/homepage"
-	"controller/login"
-	"controller/sqlHandle"
 	"github.com/kataras/iris"
-	"github.com/kataras/iris/mvc"
+	"middleware/corsServer"
 )
 
 func Router() *iris.Application {
 	app := iris.Default()
-	//for path, con_troller := range Parties {
-	//	mvc.New(app.Party(path)).Handle(con_troller)
-	//}
-	app.Handle("GET", "/", homepage.IndexHtml)
-	mvc.New(app.Party("/user")).
-		Handle(new(login.Login))
 
-	mvc.New(app.Party("/mysql")).
-		Handle(new(sqlHandle.Query))
+	app.WrapRouter(corsServer.Cors().ServeHTTP) // 跨域请求
+
+	app.Handle("GET", "/", homepage.IndexHtml) //首页
 
 	return app
 }

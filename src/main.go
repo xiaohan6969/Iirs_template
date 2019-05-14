@@ -1,7 +1,7 @@
 package main
 
 import (
-	"./config"
+	"config"
 	"github.com/kataras/iris"
 	"router"
 )
@@ -12,5 +12,5 @@ var (
 
 func main() {
 	app := router.Router()
-	error.Error(app.Run(iris.Addr(":" + port)))
+	error.Error(app.Run(iris.Addr(port)))
 }
