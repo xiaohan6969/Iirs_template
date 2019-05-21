@@ -1,9 +1,9 @@
 package main
 
 import (
-	"config"
+	"./irisTemplate/config"
+	"./irisTemplate/router"
 	"github.com/kataras/iris"
-	"router"
 )
 
 var (

@@ -1,8 +1,8 @@
 package corsServer
 
 import (
-	asconfig "config"
-	"config/configHelper"
+	asconfig "../../config"
+	"../../config/configHelper"
 	"github.com/rs/cors"
 )
 

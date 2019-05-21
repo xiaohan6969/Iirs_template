@@ -1,9 +1,9 @@
 package router
 
 import (
-	"controller/homepage"
+	"../controller/homepage"
+	"../middleware/corsServer"
 	"github.com/kataras/iris"
-	"middleware/corsServer"
 )
 
 func Router() *iris.Application {
