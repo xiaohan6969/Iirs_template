@@ -13,5 +13,8 @@ func Router() *iris.Application {
 
 	app.Handle("GET", "/", homepage.IndexHtml) //首页
 
+	//mvc.New(app.Party("/culture")). //路由模板
+	//	Handle(new(SqlTest.SqlNature))
+
 	return app
 }
