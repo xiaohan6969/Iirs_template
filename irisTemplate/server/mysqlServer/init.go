@@ -1,7 +1,7 @@
 package mysqlServer
 
 import (
-	"config"
+	"../../config"
 	"database/sql"
 	"fmt"
 	_ "github.com/jinzhu/gorm/dialects/mysql"
