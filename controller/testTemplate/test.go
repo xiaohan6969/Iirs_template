@@ -20,11 +20,7 @@ func (a *SqlNature) BeforeActivation(h mvc.BeforeActivation) {
 	h.Handle("POST", "/choice/one/detail", "OneDetail")
 }
 
-func (a *SqlNature) IndexList() {}
-
-func (a *SqlNature) OneDetail() {}
-
-func (a *SqlNature) Test() iris.Map {
+func (a *SqlNature) IndexList() iris.Map {
 	db := config2.Mysql
 	//查询数据，指定字段名，返回sql.Rows结果集
 	sql := "select first_name,last_name from "+table1
@@ -59,3 +55,8 @@ func (a *SqlNature) Test() iris.Map {
 		"message": "1111",
 	}
 }
+
+
+func (a *SqlNature) OneDetail() {}
+
+func (a *SqlNature) Test() {}
