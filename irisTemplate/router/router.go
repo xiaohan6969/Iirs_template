@@ -4,6 +4,8 @@ import (
 	"../controller/homepage"
 	"../middleware/corsServer"
 	"github.com/kataras/iris"
+	"github.com/kataras/iris/mvc"
+	"../controller/testTemplate"
 )
 
 func Router() *iris.Application {
@@ -13,8 +15,8 @@ func Router() *iris.Application {
 
 	app.Handle("GET", "/", homepage.IndexHtml) //首页
 
-	//mvc.New(app.Party("/culture")). //路由模板
-	//	Handle(new(SqlTest.SqlNature))
+	mvc.New(app.Party("/miniProgram")).
+		Handle(new(testTemplate.SqlNature))
 
 	return app
 }

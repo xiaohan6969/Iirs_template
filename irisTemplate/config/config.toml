@@ -10,10 +10,10 @@ exposed-headers = ["*"]
 
 [mysql]
     user = "root"
-    password = "mysql"
-    database = "test"
-    host = "localhost"
+    password = "123456"
+    database = "practice1"
+    host = "122.51.54.111"
     port = "3306"
-    table1 = "test"
+    table1 = "person"
 
 
