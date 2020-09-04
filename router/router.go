@@ -2,10 +2,10 @@ package router
 
 import (
 	"../controller/homepage"
+	"../controller/testTemplate"
 	"../middleware/corsServer"
 	"github.com/kataras/iris"
 	"github.com/kataras/iris/mvc"
-	"../controller/testTemplate"
 )
 
 func Router() *iris.Application {
