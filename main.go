@@ -1,8 +1,8 @@
 package main
 
 import (
-	"./config"
-	"./router"
+	"./irisTemplate/config"
+	"./irisTemplate/router"
 	"github.com/kataras/iris"
 )
 
