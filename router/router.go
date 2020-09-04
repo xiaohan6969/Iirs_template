@@ -2,7 +2,7 @@ package router
 
 import (
 	"../controller/homepage"
-	"../controller/testTemplate"
+	"../controller/indexCon"
 	"../middleware/corsServer"
 	"github.com/kataras/iris"
 	"github.com/kataras/iris/mvc"
@@ -16,7 +16,7 @@ func Router() *iris.Application {
 	app.Handle("GET", "/", homepage.IndexHtml) //首页
 
 	mvc.New(app.Party("/miniProgram")).
-		Handle(new(testTemplate.SqlNature))
+		Handle(new(indexCon.SqlNature))
 
 	return app
 }
