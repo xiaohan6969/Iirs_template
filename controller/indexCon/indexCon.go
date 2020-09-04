@@ -13,17 +13,18 @@ import (
 type SqlNature struct{}
 
 func (a *SqlNature) BeforeActivation(h mvc.BeforeActivation) {
-	h.Handle("POST", "/update/one/content", "UpdateOneContent")
-	h.Handle("POST", "/insert/one/content", "InsertOneContent")
-	h.Handle("GET", "/index/list", "FindIndexList")
-	h.Handle("POST", "/choice/one/detail", "FindOneDetail")
+	h.Handle("POST", "/update/one/content", "UpdateOneContent") //更新备忘录
+	h.Handle("POST", "/insert/one/content", "InsertOneContent") //新增
+	h.Handle("GET", "/index/list", "FindIndexList")             //查询备忘录列表
+	h.Handle("POST", "/choice/one/detail", "FindOneDetail")     //获取单个备忘录详情
 }
 
+//新增
 func (a *SqlNature) InsertOneContent(ctx iris.Context) iris.Map {
 	var (
 		err error
 	)
-	values := commonStruct.DetailedQuery{}
+	values := commonStruct.DetailedQuery1{}
 	err = ctx.ReadJSON(&values)
 	if err != nil {
 		return common.FailStruct(err)
@@ -35,6 +36,7 @@ func (a *SqlNature) InsertOneContent(ctx iris.Context) iris.Map {
 	return common.SuccessStruct()
 }
 
+//更新备忘录
 func (a *SqlNature) UpdateOneContent(ctx iris.Context) iris.Map {
 	var (
 		err error
@@ -55,6 +57,7 @@ func (a *SqlNature) UpdateOneContent(ctx iris.Context) iris.Map {
 	return common.SuccessStruct()
 }
 
+//查询备忘录列表
 func (a *SqlNature) FindIndexList(ctx iris.Context) iris.Map {
 	var (
 		err        error
@@ -85,6 +88,7 @@ func (a *SqlNature) FindIndexList(ctx iris.Context) iris.Map {
 	return common.SuccessResponse(result)
 }
 
+//获取单个备忘录详情
 func (a *SqlNature) FindOneDetail(ctx iris.Context) iris.Map {
 	var (
 		err error

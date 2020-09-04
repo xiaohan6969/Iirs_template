@@ -21,7 +21,7 @@ func FailResponse(res interface{}, err error) iris.Map {
 func SuccessStruct() iris.Map {
 	return iris.Map{
 		"status":  200,
-		"data": struct {}{},
+		"data":    struct{}{},
 		"message": "Success",
 	}
 }
@@ -29,7 +29,7 @@ func SuccessStruct() iris.Map {
 func FailStruct(err error) iris.Map {
 	return iris.Map{
 		"status":  404,
-		"data": struct {}{},
+		"data":    struct{}{},
 		"message": err.Error(),
 	}
 }
@@ -37,7 +37,7 @@ func FailStruct(err error) iris.Map {
 func SuccessSlice() iris.Map {
 	return iris.Map{
 		"status":  200,
-		"data": []string{},
+		"data":    []string{},
 		"message": "Success",
 	}
 }
