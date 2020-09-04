@@ -27,6 +27,9 @@ type DetailedQuery struct {
 	Title      string `json:"title" sql:"title"`
 	Content    string `json:"content" sql:"content"`
 	CreateTime string `json:"create_time" sql:"create_time"`
+	ImageList  string `json:"image_list" sql:"image_list"`
+	IndexImg   string `json:"index_img" sql:"index_img"`
+	Rgb        string `json:"rgb" sql:"rgb"`
 }
 
 func (a *SqlNature) IndexList(ctx iris.Context) iris.Map {
@@ -41,7 +44,7 @@ func (a *SqlNature) IndexList(ctx iris.Context) iris.Map {
 	}
 	db := config2.Mysql
 	//查询数据，指定字段名，返回sql.Rows结果集
-	sql := "select id,title,content,create_time from " + table1 + " limit " + strconv.Itoa((page-1)*size) + "," + strconv.Itoa(size)
+	sql := "select id,title,content,create_time,image_list,index_img,rgb from " + table1 + " limit " + strconv.Itoa((page-1)*size) + "," + strconv.Itoa(size)
 	fmt.Println(sql)
 	querySet, err := db.Query(sql)
 	if err != nil {
@@ -55,12 +58,18 @@ func (a *SqlNature) IndexList(ctx iris.Context) iris.Map {
 			&res.Title,
 			&res.Content,
 			&res.CreateTime,
+			&res.ImageList,
+			&res.IndexImg,
+			&res.Rgb,
 		)
 		result = append(result, DetailedQuery{
 			res.Id,
 			res.Title,
 			res.Content,
 			res.CreateTime,
+			res.ImageList,
+			res.IndexImg,
+			res.Rgb,
 		})
 	}
 	defer func() {
