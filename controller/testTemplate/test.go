@@ -23,20 +23,20 @@ func (a *SqlNature) BeforeActivation(h mvc.BeforeActivation) {
 }
 
 type DetailedQuery struct {
-	Id        int    `sql:"id"`
-	Title string `json:"title" sql:"title"`
-	Content  string `json:"content" sql:"content"`
+	Id         int    `json:"id" sql:"id"`
+	Title      string `json:"title" sql:"title"`
+	Content    string `json:"content" sql:"content"`
 	CreateTime string `json:"create_time" sql:"create_time"`
 }
 
 func (a *SqlNature) IndexList(ctx iris.Context) iris.Map {
-	page,err := ctx.URLParamInt("page")
-	size,err := ctx.URLParamInt("size")
+	page, err := ctx.URLParamInt("page")
+	size, err := ctx.URLParamInt("size")
 	fmt.Println(page)
-	if page == -1{
+	if page == -1 {
 		page = 1
 	}
-	if size == -1{
+	if size == -1 {
 		size = 10
 	}
 	db := config2.Mysql
@@ -68,17 +68,17 @@ func (a *SqlNature) IndexList(ctx iris.Context) iris.Map {
 			fmt.Println("close fail")
 		}
 	}()
-	if len(result) == 0{
+	if len(result) == 0 {
 		return iris.Map{
 			"status":  200,
 			"data":    []string{},
-			"message": "1111",
+			"message": "获取成功",
 		}
 	}
 	return iris.Map{
 		"status":  200,
 		"data":    result,
-		"message": "1111",
+		"message": "获取成功",
 	}
 }
 
@@ -93,7 +93,7 @@ func (a *SqlNature) OneDetail(ctx iris.Context) iris.Map {
 		log.Println(err)
 	}
 	//查询数据，指定字段名，返回sql.Rows结果集
-	sql := "select id,title,content from " + table1 + " where id = " + strconv.Itoa(values.IndexId)
+	sql := "select id,title,content,create_time from " + table1 + " where id = " + strconv.Itoa(values.IndexId)
 	querySet, err := db.Query(sql)
 	if err != nil {
 		fmt.Println(err)
