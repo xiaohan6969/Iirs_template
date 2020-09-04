@@ -6,6 +6,7 @@ import (
 	"fmt"
 	"github.com/kataras/iris"
 	"github.com/kataras/iris/mvc"
+	"log"
 )
 
 type SqlNature struct{}
@@ -20,11 +21,14 @@ func (a *SqlNature) BeforeActivation(h mvc.BeforeActivation) {
 	h.Handle("POST", "/choice/one/detail", "OneDetail")
 }
 
-func (a *SqlNature) IndexList() iris.Map {
+func (a *SqlNature) IndexList(ctx iris.Context) iris.Map {
+	//aaa:= ctx.URLParam("a")
+	//fmt.Println(aaa)
 	db := config2.Mysql
 	//查询数据，指定字段名，返回sql.Rows结果集
-	sql := "select first_name,last_name from "+table1
+	sql := "select id,first_name,last_name from "+table1
 	type DetailedQuery struct {
+		Id int `sql:"id"`
 		FirstName string `sql:"first_name"`
 		LastName string `sql:"last_name"`
 	}
@@ -36,10 +40,12 @@ func (a *SqlNature) IndexList() iris.Map {
 	var result []interface{}
 	for querySet.Next() {
 		err = querySet.Scan(
+			&res.Id,       //字段1
 			&res.FirstName,       //字段1
 			&res.LastName,       //字段2
 		)
 		result = append(result,DetailedQuery{
+			res.Id,
 			res.FirstName,
 			res.LastName,
 		})
@@ -57,6 +63,17 @@ func (a *SqlNature) IndexList() iris.Map {
 }
 
 
-func (a *SqlNature) OneDetail() {}
+func (a *SqlNature) OneDetail(ctx iris.Context) {
+	type request struct {
+		IndexId string `json:"index_id"`
+	}
+	values := request{}
+	err := ctx.ReadJSON(&values)
+	if err != nil {
+		log.Println(err)
+	}
+	fmt.Println(values)
+	fmt.Println(values)
+}
 
 func (a *SqlNature) Test() {}
