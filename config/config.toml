@@ -1,6 +1,7 @@
 [master]
     host = "localhost"
     port = ":8090"
+    setLevel = "debug"
 
 [cors]
 allowed-origins = ["*"]
@@ -14,6 +15,13 @@ exposed-headers = ["*"]
     database = "practice1"
     host = "122.51.54.111"
     port = "3306"
-    table1 = "person"
+    tOne = "home_pages"
+    tTwo = "users"
 
+[jwt]
+    secret = "asdkjasdhuahqe"
+    ExpiresAt = "1"
 
+[log]
+    deleteFileOnExit = false
+    osName = "./log/logs/"

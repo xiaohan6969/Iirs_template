@@ -1,18 +1,16 @@
 package jwt
 
 import (
+	"../../config"
 	"fmt"
 	"github.com/dgrijalva/jwt-go"
 	"time"
 )
 
-//aaa := jwt.Claims{
-//UserId: 1,
-//}
-//ccc,bbb := jwt.CreateToken(&aaa)
-//fmt.Println(ccc,bbb)
-//ddd,bb := jwt.ValidateToken(ccc)
-//fmt.Println(ddd.UserId,bb)
+var (
+	SECRET = config.Config.Get("jwt.secret").(string)
+	ExpiresAt, _ = time.ParseDuration(config.Config.Get("jwt.ExpiresAt").(string))
+)
 
 // Claims custom token
 type Claims struct {
@@ -25,9 +23,9 @@ type Claims struct {
 
 // CreateToken create token
 func CreateToken(claims *Claims) (signedToken string, success bool) {
-	claims.ExpiresAt = time.Now().Add(time.Minute * 1).Unix()
+	claims.ExpiresAt = time.Now().Add(time.Minute * ExpiresAt).Unix()
 	token := jwt.NewWithClaims(jwt.SigningMethodHS256, claims)
-	signedToken, err := token.SignedString([]byte("secret"))
+	signedToken, err := token.SignedString([]byte(SECRET))
 	if err != nil {
 		return
 	}
@@ -42,7 +40,7 @@ func ValidateToken(signedToken string) (claims *Claims, success bool) {
 			if _, ok := token.Method.(*jwt.SigningMethodHMAC); !ok {
 				return nil, fmt.Errorf("unexpected login method %v", token.Header["alg"])
 			}
-			return []byte("secret"), nil
+			return []byte(SECRET), nil
 		})
 
 	if err != nil {

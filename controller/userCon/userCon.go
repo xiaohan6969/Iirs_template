@@ -12,14 +12,14 @@ import (
 type User struct{}
 
 func (a *User) BeforeActivation(h mvc.BeforeActivation) {
-	h.Handle("POST", "/register", "RegisterNewUser")         //注册新用户
-	h.Handle("POST", "/login", "Login") //登录
+	h.Handle("POST", "/register", "RegisterNewUser") //注册新用户
+	h.Handle("POST", "/login", "Login")              //登录
 }
 
 //登录
 func (a *User) Login(ctx iris.Context) iris.Map {
 	var (
-		err error
+		err   error
 		token string
 	)
 	type request struct {
@@ -31,7 +31,7 @@ func (a *User) Login(ctx iris.Context) iris.Map {
 	if err != nil {
 		return response.FailResponse(struct{}{}, err)
 	}
-	token,err = userModel.LoginModel(values.UserName,values.PassWord)
+	token, err = userModel.LoginModel(values.UserName, values.PassWord)
 	if err != nil {
 		return response.FailResponse(struct{}{}, err)
 	}
@@ -41,7 +41,7 @@ func (a *User) Login(ctx iris.Context) iris.Map {
 //注册
 func (a *User) RegisterNewUser(ctx iris.Context) iris.Map {
 	var (
-		err   error
+		err error
 	)
 	type request struct {
 		UserName string `json:"user_name"` //用户名称

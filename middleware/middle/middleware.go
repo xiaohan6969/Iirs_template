@@ -1,4 +1,4 @@
-package middleware
+package middle
 
 import (
 	"../../common/msg"
@@ -8,12 +8,12 @@ import (
 	"github.com/kataras/iris"
 )
 
-func IsWorker(ctx iris.Context) {
+func CheckToken(ctx iris.Context) {
 	claims, bo := jwt.ValidateToken(ctx.GetHeader("token"))
 	if bo {
-		ctx.Values().Set("token_name", claims.UserName)
+		ctx.Values().Set("user_name", claims.UserName)
 		ctx.Next()
 	} else {
-		response.FailResponse(struct{}{}, errors.New(msg.Msg4))
+		_, _ = ctx.JSON(response.FailResponse(struct{}{}, errors.New(msg.Msg4)))
 	}
 }

@@ -1,11 +1,13 @@
 package indexCon
 
 import (
-	"../../common/public"
+	"../../common/msg"
 	"../../common/response"
+	"../../middleware/middle"
 	"../../model/commonStruct"
 	"../../model/indexModel"
-	"fmt"
+	"errors"
+	"github.com/jinzhu/gorm"
 	"github.com/kataras/iris"
 	"github.com/kataras/iris/mvc"
 	"log"
@@ -14,10 +16,10 @@ import (
 type SqlNature struct{}
 
 func (a *SqlNature) BeforeActivation(h mvc.BeforeActivation) {
-	h.Handle("POST", "/update/one/content", "UpdateOneContent") //更新备忘录
-	h.Handle("POST", "/insert/one/content", "InsertOneContent") //新增
-	h.Handle("GET", "/index/list", "FindIndexList")             //查询备忘录列表
-	h.Handle("POST", "/choice/one/detail", "FindOneDetail")     //获取单个备忘录详情
+	h.Handle("POST", "/update/one/content", "UpdateOneContent", middle.CheckToken) //更新备忘录
+	h.Handle("POST", "/insert/one/content", "InsertOneContent", middle.CheckToken) //新增
+	h.Handle("GET", "/index/list", "FindIndexList", middle.CheckToken)             //查询备忘录列表
+	h.Handle("POST", "/choice/one/detail", "FindOneDetail", middle.CheckToken)     //获取单个备忘录详情
 }
 
 //新增
@@ -30,7 +32,7 @@ func (a *SqlNature) InsertOneContent(ctx iris.Context) iris.Map {
 	if err != nil {
 		return response.FailResponse(struct{}{}, err)
 	}
-	values.CreateTime = public.TimeNowToStr()
+	values.UserName = ctx.Values().Get("user_name").(string)
 	err = indexModel.InsertOneContentModel(values)
 	if err != nil {
 		return response.FailResponse(struct{}{}, err)
@@ -62,18 +64,11 @@ func (a *SqlNature) UpdateOneContent(ctx iris.Context) iris.Map {
 //查询备忘录列表
 func (a *SqlNature) FindIndexList(ctx iris.Context) iris.Map {
 	var (
-		err        error
-		page, size int
-		result     = []interface{}{}
+		err     error
+		result  = []commonStruct.HomePage{}
+		page, _ = ctx.URLParamInt("page")
+		size, _ = ctx.URLParamInt("size")
 	)
-	page, err = ctx.URLParamInt("page")
-	if err != nil {
-		fmt.Println(page, err)
-	}
-	size, err = ctx.URLParamInt("size")
-	if err != nil {
-		fmt.Println(size, err)
-	}
 	if page == -1 {
 		page = 1
 	}
@@ -106,6 +101,9 @@ func (a *SqlNature) FindOneDetail(ctx iris.Context) iris.Map {
 	}
 	res, err = indexModel.OneDetailModel(values.IndexId)
 	if err != nil {
+		if err == gorm.ErrRecordNotFound {
+			return response.FailResponse(struct{}{}, errors.New(msg.QueryNull))
+		}
 		return response.FailResponse(res, err)
 	}
 	return response.SuccessResponse(res)
