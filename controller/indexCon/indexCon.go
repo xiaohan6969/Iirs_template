@@ -1,7 +1,8 @@
 package indexCon
 
 import (
-	"../../common"
+	"../../common/public"
+	"../../common/response"
 	"../../model/commonStruct"
 	"../../model/indexModel"
 	"fmt"
@@ -27,14 +28,14 @@ func (a *SqlNature) InsertOneContent(ctx iris.Context) iris.Map {
 	values := commonStruct.HomePage{}
 	err = ctx.ReadJSON(&values)
 	if err != nil {
-		return common.FailResponse(struct {}{},err)
+		return response.FailResponse(struct{}{}, err)
 	}
-	values.CreateTime = common.TimeNowToStr()
+	values.CreateTime = public.TimeNowToStr()
 	err = indexModel.InsertOneContentModel(values)
 	if err != nil {
-		return common.FailResponse(struct {}{},err)
+		return response.FailResponse(struct{}{}, err)
 	}
-	return common.SuccessResponse(struct {}{})
+	return response.SuccessResponse(struct{}{})
 }
 
 //更新备忘录
@@ -49,13 +50,13 @@ func (a *SqlNature) UpdateOneContent(ctx iris.Context) iris.Map {
 	values := request{}
 	err = ctx.ReadJSON(&values)
 	if err != nil {
-		return common.FailResponse(struct {}{},err)
+		return response.FailResponse(struct{}{}, err)
 	}
 	err = indexModel.UpdateOneContentModel(values.IndexId, values.Content)
 	if err != nil {
-		return common.FailResponse(struct {}{},err)
+		return response.FailResponse(struct{}{}, err)
 	}
-	return common.SuccessResponse(struct {}{})
+	return response.SuccessResponse(struct{}{})
 }
 
 //查询备忘录列表
@@ -81,12 +82,12 @@ func (a *SqlNature) FindIndexList(ctx iris.Context) iris.Map {
 	}
 	result, err = indexModel.IndexListModel(page, size)
 	if err != nil {
-		return common.FailResponse(result, err)
+		return response.FailResponse(result, err)
 	}
 	if len(result) == 0 {
-		return common.SuccessResponse([]string{})
+		return response.SuccessResponse([]string{})
 	}
-	return common.SuccessResponse(result)
+	return response.SuccessResponse(result)
 }
 
 //获取单个备忘录详情
@@ -105,7 +106,7 @@ func (a *SqlNature) FindOneDetail(ctx iris.Context) iris.Map {
 	}
 	res, err = indexModel.OneDetailModel(values.IndexId)
 	if err != nil {
-		return common.FailResponse(res, err)
+		return response.FailResponse(res, err)
 	}
-	return common.SuccessResponse(res)
+	return response.SuccessResponse(res)
 }

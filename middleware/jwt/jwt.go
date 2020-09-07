@@ -17,7 +17,7 @@ import (
 // Claims custom token
 type Claims struct {
 	//UserId int `json:"user_id"` // 用户
-	UserName   string `json:"user_name"`    //用户名称
+	UserName string `json:"user_name"` //用户名称
 	//Version   int32 `json:"version"`    // 版本
 	//LoginType int32 `json:"login_type"` // 登录方式
 	jwt.StandardClaims

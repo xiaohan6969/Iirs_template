@@ -1,4 +1,4 @@
-package common
+package response
 
 import "github.com/kataras/iris"
 
@@ -23,7 +23,7 @@ func FailResponse(res interface{}, err error) iris.Map {
 }
 
 //成功返回token
-func SuccessAndToken(res interface{},message,token string) iris.Map {
+func SuccessAndToken(res interface{}, message, token string) iris.Map {
 	return iris.Map{
 		"status":  200,
 		"data":    res,
@@ -31,4 +31,3 @@ func SuccessAndToken(res interface{},message,token string) iris.Map {
 		"token":   token,
 	}
 }
-

@@ -1,4 +1,4 @@
-package common
+package public
 
 import (
 	"crypto/md5"
@@ -28,7 +28,6 @@ func GetCurrentTimeString() string {
 func TimeUtcToCst(t time.Time) time.Time {
 	return t.Add(time.Hour * time.Duration(8))
 }
-
 
 // 自定义范围内随机整数
 func GetRangeRand(min, max int64) int64 {
@@ -208,7 +207,7 @@ func TimeStamp() int64 {
 
 func DealErr() { //defer就是把匿名函数压入到defer栈中，等到执行完毕后或者发生异常后调用匿名函数
 	err := recover() //recover是内置函数，可以捕获到异常
-	if err != nil { //说明有错误
+	if err != nil {  //说明有错误
 		fmt.Println("defer函数内部错误捕捉=============", err)
 		//当然这里可以把错误的详细位置发送给开发人员
 		//send email to admin
@@ -305,4 +304,3 @@ func ReturnFloatMin(f1, f2 float64) float64 {
 	}
 	return f
 }
-
