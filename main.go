@@ -2,9 +2,9 @@ package main
 
 import (
 	"./config"
+	"./model"
 	"./router"
 	"github.com/kataras/iris"
-	"./model"
 )
 
 var (

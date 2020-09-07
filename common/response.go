@@ -2,42 +2,33 @@ package common
 
 import "github.com/kataras/iris"
 
+//成功
 func SuccessResponse(res interface{}) iris.Map {
 	return iris.Map{
 		"status":  200,
 		"data":    res,
 		"message": "Success",
+		"token":   "",
 	}
 }
 
+//失败带错误信息
 func FailResponse(res interface{}, err error) iris.Map {
 	return iris.Map{
 		"status":  404,
 		"data":    res,
 		"message": err.Error(),
+		"token":   "",
 	}
 }
 
-func SuccessStruct() iris.Map {
+//成功返回token
+func SuccessAndToken(res interface{},message,token string) iris.Map {
 	return iris.Map{
 		"status":  200,
-		"data":    struct{}{},
-		"message": "Success",
+		"data":    res,
+		"message": message,
+		"token":   token,
 	}
 }
 
-func FailStruct(err error) iris.Map {
-	return iris.Map{
-		"status":  404,
-		"data":    struct{}{},
-		"message": err.Error(),
-	}
-}
-
-func SuccessSlice() iris.Map {
-	return iris.Map{
-		"status":  200,
-		"data":    []string{},
-		"message": "Success",
-	}
-}

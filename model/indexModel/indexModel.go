@@ -22,7 +22,9 @@ func IndexListModel(page, size int) ([]interface{}, error) {
 	)
 
 	//查询数据，指定字段名，返回sql.Rows结果集
-	sql := "select id,title,content,create_time,image_list,index_img,rgb from " + table1 + " limit " + strconv.Itoa((page-1)*size) + "," + strconv.Itoa(size)
+	sql := "select id,title,content,create_time,image_list,index_img,rgb from " + table1 +
+		" limit " + strconv.Itoa((page-1)*size) + "," + strconv.Itoa(size)+
+		"ORDER BY create_time DESC;"
 	querySet, err := db.Query(sql)
 	if err != nil {
 		return result, err

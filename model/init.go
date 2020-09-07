@@ -6,7 +6,7 @@ import (
 	"fmt"
 )
 
-func Init()  {}
+func Init() {}
 func init() {
 	db := mysqlServer.JzGorm
 	if !db.HasTable(&commonStruct.User{}) {

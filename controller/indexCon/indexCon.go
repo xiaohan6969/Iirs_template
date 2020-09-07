@@ -27,13 +27,14 @@ func (a *SqlNature) InsertOneContent(ctx iris.Context) iris.Map {
 	values := commonStruct.HomePage{}
 	err = ctx.ReadJSON(&values)
 	if err != nil {
-		return common.FailStruct(err)
+		return common.FailResponse(struct {}{},err)
 	}
+	values.CreateTime = common.TimeNowToStr()
 	err = indexModel.InsertOneContentModel(values)
 	if err != nil {
-		return common.FailStruct(err)
+		return common.FailResponse(struct {}{},err)
 	}
-	return common.SuccessStruct()
+	return common.SuccessResponse(struct {}{})
 }
 
 //更新备忘录
@@ -48,13 +49,13 @@ func (a *SqlNature) UpdateOneContent(ctx iris.Context) iris.Map {
 	values := request{}
 	err = ctx.ReadJSON(&values)
 	if err != nil {
-		return common.FailStruct(err)
+		return common.FailResponse(struct {}{},err)
 	}
 	err = indexModel.UpdateOneContentModel(values.IndexId, values.Content)
 	if err != nil {
-		return common.FailStruct(err)
+		return common.FailResponse(struct {}{},err)
 	}
-	return common.SuccessStruct()
+	return common.SuccessResponse(struct {}{})
 }
 
 //查询备忘录列表
