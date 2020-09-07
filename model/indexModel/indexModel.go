@@ -4,7 +4,6 @@ import (
 	"../../config"
 	config2 "../../server/mysqlServer"
 	"../commonStruct"
-	"encoding/json"
 	"fmt"
 	"reflect"
 	"strconv"
@@ -18,7 +17,7 @@ var (
 func IndexListModel(page, size int) ([]interface{}, error) {
 	var (
 		db     = config2.Mysql
-		res    = commonStruct.DetailedQuery{}
+		res    = commonStruct.HomePage{}
 		result = []interface{}{}
 	)
 
@@ -38,14 +37,14 @@ func IndexListModel(page, size int) ([]interface{}, error) {
 			&res.IndexImg,
 			&res.Rgb,
 		)
-		result = append(result, commonStruct.DetailedQuery{
-			res.Id,
-			res.Title,
-			res.Content,
-			res.CreateTime,
-			res.ImageList,
-			res.IndexImg,
-			res.Rgb,
+		result = append(result, commonStruct.HomePage{
+			Id:         res.Id,
+			Title:      res.Title,
+			Content:    res.Content,
+			CreateTime: res.CreateTime,
+			ImageList:  res.ImageList,
+			IndexImg:   res.IndexImg,
+			Rgb:        res.Rgb,
 		})
 	}
 	defer func() {
@@ -57,10 +56,10 @@ func IndexListModel(page, size int) ([]interface{}, error) {
 }
 
 //获取单个备忘录详情
-func OneDetailModel(index_id int) (commonStruct.DetailedQuery, error) {
+func OneDetailModel(index_id int) (commonStruct.HomePage, error) {
 	var (
 		db  = config2.Mysql
-		res = commonStruct.DetailedQuery{}
+		res = commonStruct.HomePage{}
 	)
 	//查询数据，指定字段名，返回sql.Rows结果集
 	sql := "select id,title,content,create_time from " + table1 + " where id = " + strconv.Itoa(index_id)
@@ -102,45 +101,6 @@ func InsertSqlCommon(table string, title_list []string, values []string) string 
 	return "INSERT INTO " + table + title + value
 }
 
-//sql 拼接，目前只支持全部string  等后续优化
-func InsertSqlCommonMap(table string, m interface{}) string {
-	var (
-		title = "("
-		value = " VALUES ('"
-		err   error
-	)
-	var mapResult map[string]interface{}
-	s, _ := json.Marshal(m)
-	err = json.Unmarshal(s, &mapResult)
-	if err != nil {
-		fmt.Println("JsonToMapDemo err: ", err)
-	}
-	l := len(mapResult)
-	i := 1
-	for k, v := range mapResult {
-		title += k
-		f := reflect.ValueOf(v)
-		fmt.Println(f.Kind())
-		switch f.Kind() {
-		case reflect.String:
-			value += v.(string)
-		case reflect.Float64:
-			value += strconv.FormatFloat(v.(float64), 'E', -1, 64)
-		case reflect.Int:
-			value += strconv.Itoa(v.(int))
-		}
-		if i < l {
-			title +=  ","
-			value += "','"
-		} else {
-			title += ")"
-			value += "')"
-		}
-		i++
-	}
-	return "INSERT INTO " + table + title + value
-}
-
 // 遍历struct并且自动进行赋值
 func structByReflect(data map[string]interface{}, inStructPtr interface{}) {
 	rType := reflect.TypeOf(inStructPtr)
@@ -165,13 +125,13 @@ func structByReflect(data map[string]interface{}, inStructPtr interface{}) {
 }
 
 //新增
-func InsertOneContentModel(values commonStruct.DetailedQuery1) error {
+func InsertOneContentModel(values commonStruct.HomePage) error {
 	var (
 		db  = config2.Mysql
 		err error
 	)
 	//查询数据，指定字段名，返回sql.Rows结果集
-	_, err = db.Exec(InsertSqlCommonMap(table1, values))
+	_, err = db.Exec(commonStruct.InsertSqlCommonMap(table1, values))
 	return err
 }
 

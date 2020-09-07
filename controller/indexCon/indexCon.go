@@ -24,7 +24,7 @@ func (a *SqlNature) InsertOneContent(ctx iris.Context) iris.Map {
 	var (
 		err error
 	)
-	values := commonStruct.DetailedQuery1{}
+	values := commonStruct.HomePage{}
 	err = ctx.ReadJSON(&values)
 	if err != nil {
 		return common.FailStruct(err)
@@ -92,7 +92,7 @@ func (a *SqlNature) FindIndexList(ctx iris.Context) iris.Map {
 func (a *SqlNature) FindOneDetail(ctx iris.Context) iris.Map {
 	var (
 		err error
-		res = commonStruct.DetailedQuery{}
+		res = commonStruct.HomePage{}
 	)
 	type request struct {
 		IndexId int `json:"index_id"`
