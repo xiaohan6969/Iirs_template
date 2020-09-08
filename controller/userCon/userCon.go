@@ -24,27 +24,6 @@ func (a *User) BeforeActivation(h mvc.BeforeActivation) {
 	h.Handle("POST", "/wx/program/login", "WxProgramLogin") //小程序登录
 }
 
-func (a *User) WxProgramLogin(ctx iris.Context) iris.Map {
-	var (
-		err   error
-		token string
-		res_user  = commonStruct.User{}
-	)
-	type request struct {
-		Openid string `json:"openid"`
-	}
-	values := request{}
-	err = ctx.ReadJSON(&values)
-	if err != nil {
-		return response.FailResponse(struct{}{}, err)
-	}
-	res_user,token, err = userModel.WxProgramLogin(values.Openid)
-	if err != nil {
-		return response.FailResponse(struct{}{}, err)
-	}
-	return response.SuccessAndToken(res_user, "SUCCESS", token)
-}
-
 func (a *User) WxProgramCheck(ctx iris.Context) iris.Map {
 	var (
 		err    error
@@ -75,6 +54,27 @@ func (a *User) WxProgramCheck(ctx iris.Context) iris.Map {
 	}
 	return response.SuccessAndToken(res_user, "SUCCESS", token)
 	//return response.SuccessAndToken(WxApp, "SUCCESS", "")
+}
+
+func (a *User) WxProgramLogin(ctx iris.Context) iris.Map {
+	var (
+		err   error
+		token string
+		res_user  = commonStruct.User{}
+	)
+	type request struct {
+		Openid string `json:"openid"`
+	}
+	values := request{}
+	err = ctx.ReadJSON(&values)
+	if err != nil {
+		return response.FailResponse(struct{}{}, err)
+	}
+	res_user,token, err = userModel.WxProgramLogin(values.Openid)
+	if err != nil {
+		return response.FailResponse(struct{}{}, err)
+	}
+	return response.SuccessAndToken(res_user, "SUCCESS", token)
 }
 
 //登录
