@@ -19,7 +19,7 @@ func WxProgramLogin(openid string) (commonStruct.User,string, error) {
 		res_user  = &commonStruct.User{}
 	)
 	err = db.Table("users").
-		Where("openid = ?", openid).
+		Where("open_id = ?", openid).
 		Scan(res_user).
 		Error
 	if err != nil {
