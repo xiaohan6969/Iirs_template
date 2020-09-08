@@ -19,7 +19,7 @@ func InsertSqlCommonMap(table string, m interface{}) string {
 	s, _ := json.Marshal(m)
 	err = json.Unmarshal(s, &mapResult)
 	if err != nil {
-		fmt.Println("JsonToMapDemo err: ", err)
+		fmt.Println("JsonToMapDemo unusual: ", err)
 	}
 	l := len(mapResult)
 	i := 1

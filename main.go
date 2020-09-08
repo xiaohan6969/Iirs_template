@@ -3,13 +3,12 @@ package main
 import (
 	"./config"
 	"./log"
+	"./middleware/unusual"
 	"./model"
 	"./router"
-	"errors"
-	"fmt"
-	"github.com/getsentry/raven-go"
 	"github.com/kataras/iris"
-	"runtime/debug"
+	"io"
+	"os"
 )
 
 var (
@@ -18,27 +17,27 @@ var (
 )
 
 func main() {
-	model.Init() //初始化数据库
-	app := iris.New()
-	r, CLOSE := log.ILogger()
-	defer CLOSE()
-	app.Use(r)
-	app.Use(irisRavenMiddleware)
-	app.Logger().SetLevel(SET_LEVEl)
-	app = router.Router()
-	error.Error(app.Run(iris.Addr(port)))
-}
+	//初始化数据库所有表
+	model.Init()
 
-func irisRavenMiddleware(ctx iris.Context) {
-	w, r := ctx.ResponseWriter(), ctx.Request()
-	defer func() {
-		if rval := recover(); rval != nil {
-			debug.PrintStack()
-			rvalStr := fmt.Sprint(rval)
-			packet := raven.NewPacket(rvalStr, raven.NewException(errors.New(rvalStr), raven.NewStacktrace(2, 3, nil)), raven.NewHttp(r))
-			raven.Capture(packet, nil)
-			w.WriteHeader(iris.StatusInternalServerError)
-		}
-	}()
-	ctx.Next()
+	//初始化应用
+	app := iris.New()
+
+	// 同时写文件日志与控制台日志
+	f := log.NewLogFile()
+	defer log.DealErr(f)
+	app.Logger().SetOutput(io.MultiWriter(f, os.Stdout))
+	app.Use(log.RequestLogger())
+
+	//错误处理
+	app.Use(unusual.IrisRavenMiddleware)
+
+	//控制台信息
+	app.Logger().SetLevel(SET_LEVEl)
+
+	//初始化路由
+	app = router.Router()
+
+	//端口绑定
+	error.Error(app.Run(iris.Addr(port)))
 }

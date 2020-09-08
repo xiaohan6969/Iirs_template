@@ -8,7 +8,7 @@ import (
 )
 
 var (
-	SECRET = config.Config.Get("jwt.secret").(string)
+	SECRET       = config.Config.Get("jwt.secret").(string)
 	ExpiresAt, _ = time.ParseDuration(config.Config.Get("jwt.ExpiresAt").(string))
 )
 

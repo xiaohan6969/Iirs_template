@@ -184,7 +184,7 @@ func SliceRepeated(arr []interface{}) (newArr []interface{}) {
 //公共处理错误
 func CommonERROR(err error) {
 	if err != nil {
-		fmt.Println("err")
+		fmt.Println("unusual")
 	}
 }
 

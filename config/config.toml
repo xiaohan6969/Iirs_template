@@ -23,5 +23,5 @@ exposed-headers = ["*"]
     ExpiresAt = "1"
 
 [log]
-    deleteFileOnExit = false
+    deleteFileOnExit = true
     osName = "./log/logs/"
