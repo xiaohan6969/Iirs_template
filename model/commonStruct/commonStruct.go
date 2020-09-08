@@ -21,3 +21,12 @@ type User struct {
 	CreateTime string `json:"create_time" gorm:"type:varchar(128);not null;"`     //创建时间
 	Token      string `json:"token" gorm:"type:varchar(256);default:''"`
 }
+
+type WxApp struct {
+	Errcode     int    `json:"errcode"`
+	OpenID      string `json:"openid"`
+	Session_key string `json:"session_key"`
+	Unionid     string `json:"unionid"`
+	Errmsg      string `json:"errmsg"`
+	Mobile      string `json:"mobile"`
+}

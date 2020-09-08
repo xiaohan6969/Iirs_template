@@ -1,0 +1,39 @@
+[DBUG] 2020/09/08 13:30 MVC Controller [userCon.User] [Scope=Singleton]
+[DBUG] 2020/09/08 13:30 MVC dependencies of method 'userCon.User.RegisterNewUser':
+[1] Dynamic binding: 'context.Context' for input position: 1 and type: 'context.Context'
+
+[DBUG] 2020/09/08 13:30 MVC dependencies of method 'userCon.User.Login':
+[1] Dynamic binding: 'context.Context' for input position: 1 and type: 'context.Context'
+
+[DBUG] 2020/09/08 13:30 MVC dependencies of method 'userCon.User.WxAppCheckLogin':
+[1] Dynamic binding: 'context.Context' for input position: 1 and type: 'context.Context'
+
+[DBUG] 2020/09/08 13:30 MVC Controller [indexCon.SqlNature] [Scope=Singleton]
+[DBUG] 2020/09/08 13:30 MVC dependencies of method 'indexCon.SqlNature.UpdateOneContent':
+[1] Dynamic binding: 'context.Context' for input position: 1 and type: 'context.Context'
+
+[DBUG] 2020/09/08 13:30 MVC dependencies of method 'indexCon.SqlNature.InsertOneContent':
+[1] Dynamic binding: 'context.Context' for input position: 1 and type: 'context.Context'
+
+[DBUG] 2020/09/08 13:30 MVC dependencies of method 'indexCon.SqlNature.FindIndexList':
+[1] Dynamic binding: 'context.Context' for input position: 1 and type: 'context.Context'
+
+[DBUG] 2020/09/08 13:30 MVC dependencies of method 'indexCon.SqlNature.FindOneDetail':
+[1] Dynamic binding: 'context.Context' for input position: 1 and type: 'context.Context'
+
+[DBUG] 2020/09/08 13:30 [./controller\indexCon\indexCon.go:21] GET: /miniProgram/index/list -> indexCon.SqlNature.FindIndexList() and 3 more
+[DBUG] 2020/09/08 13:30 [./controller\indexCon\indexCon.go:22] POST: /miniProgram/choice/one/detail -> indexCon.SqlNature.FindOneDetail() and 3 more
+[DBUG] 2020/09/08 13:30 [./controller\userCon\userCon.go:21] POST: /mini/user/login -> userCon.User.Login() and 2 more
+[DBUG] 2020/09/08 13:30 [./controller\userCon\userCon.go:22] GET: /mini/user/wx/check/login -> userCon.User.WxAppCheckLogin() and 2 more
+[DBUG] 2020/09/08 13:30 [./controller\indexCon\indexCon.go:19] POST: /miniProgram/update/one/content -> indexCon.SqlNature.UpdateOneContent() and 3 more
+[DBUG] 2020/09/08 13:30 [./controller\indexCon\indexCon.go:20] POST: /miniProgram/insert/one/content -> indexCon.SqlNature.InsertOneContent() and 3 more
+[DBUG] 2020/09/08 13:30 [./router\router.go:16] GET: / -> _/C_/Users/han/Desktop/src/controller/homepage.IndexHtml() and 2 more
+[DBUG] 2020/09/08 13:30 [./controller\userCon\userCon.go:20] POST: /mini/user/register -> userCon.User.RegisterNewUser() and 2 more
+[DBUG] 2020/09/08 13:30 Application: running using 1 host(s)
+[DBUG] 2020/09/08 13:30 Host: addr is :8090
+[DBUG] 2020/09/08 13:30 Host: virtual host is localhost:8090
+[DBUG] 2020/09/08 13:30 Host: register startup notifier
+[DBUG] 2020/09/08 13:30 Host: register server shutdown on interrupt(CTRL+C/CMD+C)
+Now listening on: http://localhost:8090
+Application started. Press CTRL+C to shut down.
+[INFO] 2020/09/08 13:30 200 102.8402ms ::1 GET /mini/user/wx/check/login

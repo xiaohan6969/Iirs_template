@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>个人中心</title>
+    <meta charset="UTF-8"/>
+</head>
+<body>
+<table border="1">
+    <tr>
+        <script type="text/javascript">
+            function UrlSearch() {
+                var name, value;
+                var str = "http://localhost:8090/mini/user/login"
+                // var str = "http://www.example.com/number_checking?{'url':'htt/povuhjq3qc','bkg_url':'httpovuhjq3qc1'}"
+                var num = str.indexOf("?")             // 获得接口?的位置
+                str = str.substr(num + 1); //取得所有参数  获得？后面的所有的字符串
+                str = str.substring(1, str.length - 1);          //字符串分割
+                var arr = str.split(","); //各个参数放到数组里，参数以,分开
+                for (var i = 0; i < arr.length; i++) {
+                    num = arr[i].indexOf(":");        //获取：所在的位置
+                    if (num > 0) {
+                        //name=arr[i].substring(0,num);
+                        name = arr[i].substring(1, num - 1);     //获取参数的名称
+                        value = arr[i].substr(num + 1);          //获得参数的值
+                        value = value.substring(1, value.length - 1);
+                        this[name] = value;
+                    }
+                }
+            }
+            var Request = new UrlSearch(); //实例化
+            var url = Request.url;         //获得参数URL的值
+            var bkg_url = Request.bkg_url; //获得参数bkg_url的值
+        </script>
+        <th>用户名</th>
+        <td><form><input type="text" name="username"/></form></td>
+
+    </tr>
+    <tr>
+        <th>密码</th>
+        <td><form><input type="password" name="pwd"/></form></td>
+    </tr>
+    <tr>
+        <th>性别</th>
+        <td><form>男<input type="radio" name="xb"value="0"/> 女<input type="radio" name="xb"value="1"/></form></td>
+    </tr>
+    <tr>
+        <th><button>注册</button></th>
+        <td><button>清除</button></td>
+    </tr>
+</table>
+</body>
+</html>
