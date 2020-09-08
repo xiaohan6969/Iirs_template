@@ -244,6 +244,16 @@ func Md5V(str string) string {
 	return hex.EncodeToString(h.Sum(nil))
 }
 
+// RandString 生成随机字符串
+func RandString(len int) string {
+	bytes := make([]byte, len)
+	for i := 0; i < len; i++ {
+		b := rand.New(rand.NewSource(time.Now().Unix())).Intn(26) + 65
+		bytes[i] = byte(b)
+	}
+	return string(bytes)
+}
+
 //获取上个月日期  2019-09
 func QueryLastMonth() string {
 	currentYear, currentMonth, _ := time.Now().Date()

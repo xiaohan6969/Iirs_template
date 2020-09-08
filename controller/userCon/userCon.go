@@ -8,6 +8,7 @@ import (
 	"../../model/commonStruct"
 	"../../model/userModel"
 	"errors"
+	"fmt"
 	"github.com/kataras/iris"
 	"github.com/kataras/iris/mvc"
 	"github.com/segmentio/encoding/json"
@@ -17,17 +18,38 @@ import (
 type User struct{}
 
 func (a *User) BeforeActivation(h mvc.BeforeActivation) {
-	h.Handle("POST", "/register", "RegisterNewUser") //注册新用户
-	h.Handle("POST", "/login", "Login")              //登录
-	h.Handle("GET", "/wx/check/login", "WxAppCheckLogin")     //小程序登录验证
+	h.Handle("POST", "/register", "RegisterNewUser")        //注册新用户
+	h.Handle("POST", "/login", "Login")                     //普通登录
+	h.Handle("GET", "/wx/check/login", "WxProgramCheck")    //小程序登录验证
+	h.Handle("POST", "/wx/program/login", "WxProgramLogin") //小程序登录
 }
 
-func (a *User) WxAppCheckLogin(ctx iris.Context) iris.Map {
+func (a *User) WxProgramLogin(ctx iris.Context) iris.Map {
+	var (
+		err error
+		token string
+	)
+	type request struct {
+		Openid string `json:"openid"`
+	}
+	values := request{}
+	err = ctx.ReadJSON(&values)
+	if err != nil {
+		return response.FailResponse(struct{}{}, err)
+	}
+	token,err = userModel.WxProgramLogin(values.Openid)
+	if err != nil {
+		return response.FailResponse(struct{}{}, err)
+	}
+	return response.SuccessAndToken(struct{}{}, "SUCCESS", token)
+}
+
+func (a *User) WxProgramCheck(ctx iris.Context) iris.Map {
 	var (
 		err    error
 		b      []byte
 		secret = config.Config.Get("wxApp.secret").(string)
-		app_id =config.Config.Get("wxApp.app_id").(string)
+		app_id = config.Config.Get("wxApp.app_id").(string)
 		WxApp  = new(commonStruct.WxApp)
 		code   = ctx.URLParam("code")
 	)
@@ -40,7 +62,7 @@ func (a *User) WxAppCheckLogin(ctx iris.Context) iris.Map {
 	if b, err = http.GetRequestBytes(URL); err != nil {
 		return response.FailResponse(struct{}{}, err)
 	}
-
+	fmt.Println("b===",string(b))
 	if err = json.Unmarshal([]byte(b), &WxApp); err != nil {
 		return response.FailResponse(struct{}{}, err)
 	}

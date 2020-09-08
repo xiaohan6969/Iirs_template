@@ -7,6 +7,6 @@ const (
 	Msg4      = "token失效"
 	Msg5      = "用户名或密码错误"
 	Msg6      = "code为空"
-	NotFound  = "record not found"
+	Msg7      = "新人_"
 	QueryNull = "查询结果为空"
 )

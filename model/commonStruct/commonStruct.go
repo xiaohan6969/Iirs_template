@@ -19,7 +19,8 @@ type User struct {
 	UserAge    string `json:"user_age" gorm:"type:varchar(256);not null;"`        //年龄
 	UserSex    string `json:"user_sex" gorm:"type:varchar(128);not null;"`        //性别
 	CreateTime string `json:"create_time" gorm:"type:varchar(128);not null;"`     //创建时间
-	Token      string `json:"token" gorm:"type:varchar(256);default:''"`
+	Token      string `json:"token" gorm:"type:varchar(256);default:''"`          //token
+	OpenId     string `json:"openid" gorm:"type:varchar(128);"`                   // 小程序Openid
 }
 
 type WxApp struct {

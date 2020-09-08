@@ -20,7 +20,6 @@ func GetRequestBytes(url string) ([]byte, error) {
 		fmt.Println(err.Error())
 	}
 	if i == 200 {
-		fmt.Printf("返回：%v\n", string(b))
 		return b, nil
 	}
 	return nil, nil
@@ -58,6 +57,5 @@ func FastHttpRequest(arg *fasthttp.Args, method string, url string, cookies map[
 	defer fasthttp.ReleaseResponse(resp)
 	var err error
 	err = fasthttp.DoTimeout(req, resp, time.Second*5)
-	fmt.Println(err)
 	return resp.Body(), resp.StatusCode(), err
 }
