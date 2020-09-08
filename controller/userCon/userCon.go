@@ -28,6 +28,7 @@ func (a *User) WxProgramLogin(ctx iris.Context) iris.Map {
 	var (
 		err   error
 		token string
+		res_user  = commonStruct.User{}
 	)
 	type request struct {
 		Openid string `json:"openid"`
@@ -37,11 +38,11 @@ func (a *User) WxProgramLogin(ctx iris.Context) iris.Map {
 	if err != nil {
 		return response.FailResponse(struct{}{}, err)
 	}
-	token, err = userModel.WxProgramLogin(values.Openid)
+	res_user,token, err = userModel.WxProgramLogin(values.Openid)
 	if err != nil {
 		return response.FailResponse(struct{}{}, err)
 	}
-	return response.SuccessAndToken(struct{}{}, "SUCCESS", token)
+	return response.SuccessAndToken(res_user, "SUCCESS", token)
 }
 
 func (a *User) WxProgramCheck(ctx iris.Context) iris.Map {

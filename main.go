@@ -2,10 +2,13 @@ package main
 
 import (
 	"./config"
+	"./log"
 	"./middleware/unusual"
 	"./model"
 	"./router"
 	"github.com/kataras/iris"
+	"io"
+	"os"
 )
 
 var (
@@ -21,10 +24,10 @@ func main() {
 	app := iris.New()
 
 	// 同时写文件日志与控制台日志
-	//f := log.NewLogFile()
-	//defer log.DealErr(f)
-	//app.Logger().SetOutput(io.MultiWriter(f, os.Stdout))
-	//app.Use(log.RequestLogger())
+	f := log.NewLogFile()
+	defer log.DealErr(f)
+	app.Logger().SetOutput(io.MultiWriter(f, os.Stdout))
+	app.Use(log.RequestLogger())
 
 	//错误处理
 	app.Use(unusual.IrisRavenMiddleware)
