@@ -9,7 +9,7 @@ import (
 	"errors"
 )
 
-func WxProgramLogin(openid string) (commonStruct.User,string, error) {
+func WxProgramLogin(openid string) (commonStruct.User, string, error) {
 	var (
 		err       error
 		token     string
@@ -24,7 +24,7 @@ func WxProgramLogin(openid string) (commonStruct.User,string, error) {
 		Error
 	if err != nil {
 		if err.Error()[0:10] == msg.Msg8 {
-			user_name = msg.Msg7 +public.GetCaptcha()+ public.RandString(2)
+			user_name = msg.Msg7 + public.GetCaptcha() + public.RandString(2)
 			token, _ = jwt.CreateToken(&jwt.Claims{UserName: user_name})
 			user := &commonStruct.User{
 				UserName:   user_name,
@@ -36,13 +36,13 @@ func WxProgramLogin(openid string) (commonStruct.User,string, error) {
 				OpenId:     openid,
 			}
 			err = db.Create(user).Error
-			return *user,token, err
+			return *user, token, err
 		}
-		return *res_user,token, err
+		return *res_user, token, err
 	} else {
 		user_name = res_user.UserName
 		token, _ = jwt.CreateToken(&jwt.Claims{UserName: user_name})
-		return *res_user,token, nil
+		return *res_user, token, nil
 	}
 }
 

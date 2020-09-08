@@ -20,7 +20,7 @@ exposed-headers = ["*"]
 
 [jwt]
     secret = "asdkjasdhuahqe"
-    ExpiresAt = "1"
+    ExpiresAt = "60"
 
 [log]
     deleteFileOnExit = true
