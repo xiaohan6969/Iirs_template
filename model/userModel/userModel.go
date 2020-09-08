@@ -7,7 +7,6 @@ import (
 	"../../server/mysqlServer"
 	"../commonStruct"
 	"errors"
-	"github.com/jinzhu/gorm"
 )
 
 func WxProgramLogin(openid string) (string, error) {
@@ -15,7 +14,7 @@ func WxProgramLogin(openid string) (string, error) {
 		err       error
 		token     string
 		user_name string
-		pass_word = ""
+		pass_word = msg.Msg9
 		db        = mysqlServer.JzGorm
 		res_user  = &commonStruct.User{}
 	)
@@ -23,25 +22,28 @@ func WxProgramLogin(openid string) (string, error) {
 		Where("openid = ?", openid).
 		Scan(res_user).
 		Error
-	user_name = res_user.UserName
-	if err == gorm.ErrRecordNotFound {
-		user_name = msg.Msg7 + public.RandString(10)
-		user := &commonStruct.User{
-			UserName:   user_name,
-			PassWord:   pass_word,
-			UserAge:    "",
-			UserSex:    "",
-			CreateTime: public.TimeNowToStr(),
-			Token:      "",
-			OpenId:     openid,
-		}
-		err = db.Create(user).Error
-		if err != nil {
+	if err != nil {
+		if err.Error()[0:10] == msg.Msg8 {
+			user_name = msg.Msg7 + public.RandString(10)
+			token, _ = jwt.CreateToken(&jwt.Claims{UserName: user_name})
+			user := &commonStruct.User{
+				UserName:   user_name,
+				PassWord:   pass_word,
+				UserAge:    "",
+				UserSex:    "",
+				CreateTime: public.TimeNowToStr(),
+				Token:      token,
+				OpenId:     openid,
+			}
+			err = db.Create(user).Error
 			return token, err
 		}
+		return token, err
+	} else {
+		user_name = res_user.UserName
+		token, _ = jwt.CreateToken(&jwt.Claims{UserName: user_name})
+		return token, nil
 	}
-	token, _ = jwt.CreateToken(&jwt.Claims{UserName: user_name})
-	return token, nil
 }
 
 func RegisterNewUserModel(user_name, pass_word string) error {

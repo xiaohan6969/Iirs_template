@@ -26,7 +26,7 @@ func (a *User) BeforeActivation(h mvc.BeforeActivation) {
 
 func (a *User) WxProgramLogin(ctx iris.Context) iris.Map {
 	var (
-		err error
+		err   error
 		token string
 	)
 	type request struct {
@@ -37,7 +37,7 @@ func (a *User) WxProgramLogin(ctx iris.Context) iris.Map {
 	if err != nil {
 		return response.FailResponse(struct{}{}, err)
 	}
-	token,err = userModel.WxProgramLogin(values.Openid)
+	token, err = userModel.WxProgramLogin(values.Openid)
 	if err != nil {
 		return response.FailResponse(struct{}{}, err)
 	}
@@ -62,7 +62,7 @@ func (a *User) WxProgramCheck(ctx iris.Context) iris.Map {
 	if b, err = http.GetRequestBytes(URL); err != nil {
 		return response.FailResponse(struct{}{}, err)
 	}
-	fmt.Println("b===",string(b))
+	fmt.Println("b===", string(b))
 	if err = json.Unmarshal([]byte(b), &WxApp); err != nil {
 		return response.FailResponse(struct{}{}, err)
 	}

@@ -8,5 +8,7 @@ const (
 	Msg5      = "用户名或密码错误"
 	Msg6      = "code为空"
 	Msg7      = "新人_"
+	Msg8      = "Error 1054"
+	Msg9      = "123456"
 	QueryNull = "查询结果为空"
 )
