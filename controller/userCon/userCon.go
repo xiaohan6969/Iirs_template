@@ -53,6 +53,8 @@ func (a *User) WxProgramCheck(ctx iris.Context) iris.Map {
 		app_id = config.Config.Get("wxApp.app_id").(string)
 		WxApp  = new(commonStruct.WxApp)
 		code   = ctx.URLParam("code")
+		token string
+		res_user  = commonStruct.User{}
 	)
 	if code == "" {
 		return response.FailResponse(struct{}{}, errors.New(msg.Msg6))
@@ -67,7 +69,12 @@ func (a *User) WxProgramCheck(ctx iris.Context) iris.Map {
 	if err = json.Unmarshal([]byte(b), &WxApp); err != nil {
 		return response.FailResponse(struct{}{}, err)
 	}
-	return response.SuccessAndToken(WxApp, "SUCCESS", "")
+	res_user,token, err = userModel.WxProgramLogin(WxApp.OpenID)
+	if err != nil {
+		return response.FailResponse(struct{}{}, err)
+	}
+	return response.SuccessAndToken(res_user, "SUCCESS", token)
+	//return response.SuccessAndToken(WxApp, "SUCCESS", "")
 }
 
 //登录
