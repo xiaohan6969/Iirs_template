@@ -28,8 +28,8 @@ func (a *User) WxProgramCheck(ctx iris.Context) iris.Map {
 	var (
 		err      error
 		b        []byte
-		secret   = config.Config.Get("wxApp.secret").(string)
-		app_id   = config.Config.Get("wxApp.app_id").(string)
+		secret   = config.Config.Get("wxApp.secret").(string)[1:]
+		app_id   = config.Config.Get("wxApp.app_id").(string)[1:]
 		WxApp    = new(commonStruct.WxApp)
 		code     = ctx.URLParam("code")
 		token    string

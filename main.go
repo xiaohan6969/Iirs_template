@@ -12,7 +12,7 @@ import (
 )
 
 var (
-	port      = config.Config.Get("master.port").(string)
+	PORT      = config.Config.Get("master.port").(string)
 	SET_LEVEl = config.Config.Get("master.setLevel").(string)
 )
 
@@ -39,5 +39,5 @@ func main() {
 	app = router.Router()
 
 	//端口绑定
-	error.Error(app.Run(iris.Addr(port)))
+	error.Error(app.Run(iris.Addr(PORT)))
 }

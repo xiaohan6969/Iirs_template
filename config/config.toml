@@ -27,5 +27,5 @@ exposed-headers = ["*"]
     osName = "./log/logs/"
 
 [wxApp]
-    secret = "063177f196709daf7decfd0fd3095565"
-    app_id = "wx0ca4b7241f70ea19"
+    secret = "@063177f196709daf7decfd0fd3095565"
+    app_id = "@wx0ca4b7241f70ea19"
