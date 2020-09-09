@@ -19,11 +19,11 @@
     tTwo = "users"
 
 [jwt]
-    secret = "secret"
-    ExpiresAt = "900000"  #分钟
+    secret = "se"
+    ExpiresAt = "10"  #分钟
 
 [log]
-    deleteFileOnExit = false
+    deleteFileOnExit = true
     osName = "./log/logs/"
 
 [wxApp]
