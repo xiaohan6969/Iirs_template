@@ -7,6 +7,7 @@ import (
 	"../../server/mysqlServer"
 	"../commonStruct"
 	"errors"
+	"fmt"
 )
 
 func WxProgramLogin(openid string) (commonStruct.User, string, error) {
@@ -18,6 +19,11 @@ func WxProgramLogin(openid string) (commonStruct.User, string, error) {
 		db        = mysqlServer.JzGorm
 		res_user  = &commonStruct.User{}
 	)
+	defer func() {
+		if err := db.Close();err != nil{
+			fmt.Println(err)
+		}
+	}()
 	err = db.Table("users").
 		Where("open_id = ?", openid).
 		Scan(res_user).
@@ -50,6 +56,11 @@ func RegisterNewUserModel(user_name, pass_word string) error {
 	var (
 		db = mysqlServer.JzGorm
 	)
+	defer func() {
+		if err := db.Close();err != nil{
+			fmt.Println(err)
+		}
+	}()
 	user := &commonStruct.User{
 		UserName:   user_name,
 		PassWord:   pass_word,
@@ -67,6 +78,11 @@ func LoginModel(user_name, pass_word string) (string, error) {
 		token string
 		err   error
 	)
+	defer func() {
+		if err := db.Close();err != nil{
+			fmt.Println(err)
+		}
+	}()
 	token, _ = jwt.CreateToken(&jwt.Claims{UserName: user_name})
 	var count int
 	err = db.Model(&commonStruct.User{}).

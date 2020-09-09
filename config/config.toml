@@ -1,7 +1,7 @@
 [master]
     host = "localhost"
     port = ":8090"
-    setLevel = "SUCCESS"
+    setLevel = "debug"
 
 [cors]
     allowed-origins = ["*"]
@@ -23,7 +23,7 @@
     ExpiresAt = "900000"  #分钟
 
 [log]
-    deleteFileOnExit = true
+    deleteFileOnExit = false
     osName = "./log/logs/"
 
 [wxApp]

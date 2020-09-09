@@ -18,7 +18,7 @@ var (
 
 func main() {
 	//初始化数据库所有表
-	model.Init()
+	model.MysqlTableInit()
 
 	//初始化应用
 	app := iris.New()

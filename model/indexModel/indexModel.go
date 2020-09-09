@@ -5,6 +5,7 @@ import (
 	"../../config"
 	"../../server/mysqlServer"
 	"../commonStruct"
+	"fmt"
 	"strconv"
 )
 
@@ -18,6 +19,11 @@ func IndexListModel(page, size int) ([]commonStruct.HomePage, error) {
 		db  = mysqlServer.JzGorm
 		res = &[]commonStruct.HomePage{}
 	)
+	defer func() {
+		if err := db.Close();err != nil{
+			fmt.Println(err)
+		}
+	}()
 	err := db.Table(tOne).
 		Where("status = 1").
 		Limit(strconv.Itoa(size)).
@@ -34,6 +40,11 @@ func OneDetailModel(index_id int) (commonStruct.HomePage, error) {
 		db  = mysqlServer.JzGorm
 		res = &commonStruct.HomePage{}
 	)
+	defer func() {
+		if err := db.Close();err != nil{
+			fmt.Println(err)
+		}
+	}()
 	err := db.Table(tOne).
 		Where("id = ? AND status = ?", index_id, 1).
 		Scan(res).
@@ -47,6 +58,11 @@ func InsertOneContentModel(values commonStruct.HomePage) error {
 		DB  = mysqlServer.JzGorm
 		err error
 	)
+	defer func() {
+		if err := DB.Close();err != nil{
+			fmt.Println(err)
+		}
+	}()
 	values.CreateTime = public.TimeNowToStr()
 	values.Status = 1
 	err = DB.Table(tOne).
@@ -61,6 +77,11 @@ func UpdateOneContentModel(index_id int, content string) error {
 		DB  = mysqlServer.JzGorm
 		err error
 	)
+	defer func() {
+		if err := DB.Close();err != nil{
+			fmt.Println(err)
+		}
+	}()
 	err = DB.Table(tOne).
 		Where("id = ?", index_id).
 		Update("content", content).
