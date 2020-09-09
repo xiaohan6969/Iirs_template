@@ -6,6 +6,8 @@ import (
 	"./middleware/unusual"
 	"./model"
 	"./router"
+	"./server/redisServer"
+	"fmt"
 	"github.com/kataras/iris"
 	"io"
 	"os"

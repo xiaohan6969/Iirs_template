@@ -19,7 +19,7 @@ type User struct{}
 
 func (a *User) BeforeActivation(h mvc.BeforeActivation) {
 	h.Handle("POST", "/register", "RegisterNewUser")     //注册新用户
-	h.Handle("POST", "/login", "Login")                  //普通登录
+	h.Handle("POST", "/login/", "Login")                 //普通登录
 	h.Handle("GET", "/wx/check/login", "WxProgramCheck") //小程序登录验证
 	//h.Handle("POST", "/wx/program/login", "WxProgramLogin") //小程序登录
 }

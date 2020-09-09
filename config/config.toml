@@ -1,13 +1,13 @@
 [master]
     host = "localhost"
     port = ":8090"
-    setLevel = "debug"
+    setLevel = "SUCCESS"
 
 [cors]
-allowed-origins = ["*"]
-allowed-methods = ["GET", "POST"]
-allowed-headers = ["*"]
-exposed-headers = ["*"]
+    allowed-origins = ["*"]
+    allowed-methods = ["GET", "POST"]
+    allowed-headers = ["*"]
+    exposed-headers = ["*"]
 
 [mysql]
     user = "root"
@@ -19,8 +19,8 @@ exposed-headers = ["*"]
     tTwo = "users"
 
 [jwt]
-    secret = "asdkjasdhuahqe"
-    ExpiresAt = "60"
+    secret = "secret"
+    ExpiresAt = "900000"  #分钟
 
 [log]
     deleteFileOnExit = true
@@ -29,3 +29,8 @@ exposed-headers = ["*"]
 [wxApp]
     secret = "@063177f196709daf7decfd0fd3095565"
     app_id = "@wx0ca4b7241f70ea19"
+
+[redis]
+    ip = "122.51.54.111:"
+    port = "6379"
+    password = ""

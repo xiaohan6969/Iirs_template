@@ -8,8 +8,8 @@ import (
 )
 
 var (
-	SECRET       = config.Config.Get("jwt.secret").(string)
-	ExpiresAt, _ = time.ParseDuration(config.Config.Get("jwt.ExpiresAt").(string))
+	SECRET = config.Config.Get("jwt.secret").(string)
+	//ExpiresAt, _ = time.ParseDuration(config.Config.Get("jwt.ExpiresAt").(string))
 )
 
 // Claims custom token
@@ -21,9 +21,9 @@ type Claims struct {
 	jwt.StandardClaims
 }
 
-// CreateToken create token
+//create token
 func CreateToken(claims *Claims) (signedToken string, success bool) {
-	claims.ExpiresAt = time.Now().Add(time.Minute * ExpiresAt).Unix()
+	claims.ExpiresAt = time.Now().Add(time.Minute * 10).Unix()
 	token := jwt.NewWithClaims(jwt.SigningMethodHS256, claims)
 	signedToken, err := token.SignedString([]byte(SECRET))
 	if err != nil {
@@ -33,7 +33,7 @@ func CreateToken(claims *Claims) (signedToken string, success bool) {
 	return
 }
 
-// ValidateToken validate token
+//validate token
 func ValidateToken(signedToken string) (claims *Claims, success bool) {
 	token, err := jwt.ParseWithClaims(signedToken, &Claims{},
 		func(token *jwt.Token) (interface{}, error) {
