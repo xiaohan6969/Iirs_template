@@ -23,7 +23,7 @@ type Claims struct {
 
 //create token
 func CreateToken(claims *Claims) (signedToken string, success bool) {
-	claims.ExpiresAt = time.Now().Add(time.Minute * 10).Unix()
+	claims.ExpiresAt = time.Now().Add(time.Minute * 1000).Unix()
 	token := jwt.NewWithClaims(jwt.SigningMethodHS256, claims)
 	signedToken, err := token.SignedString([]byte(SECRET))
 	if err != nil {
