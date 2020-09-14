@@ -1,0 +1,22 @@
+.divs {
+    width: 100%;
+    height: 250px;
+    background-color: grey;
+    /*margin的属性顺序是上右下左*/
+    margin: 10px 10px 5px 1px;
+}
+
+#j1 {
+    /*这里把上面divs中设置的背景颜色覆盖了*/
+    background-color: white;
+}
+
+#j2 {
+    /*这里把上面divs中设置的背景颜色覆盖了*/
+    background-color: whitesmoke;
+}
+
+#j3 {
+    /*这里把上面divs中设置的背景颜色覆盖了*/
+    background-color: antiquewhite;
+}

@@ -13,11 +13,12 @@
 </div>
 <script src="http://libs.baidu.com/jquery/2.0.0/jquery.min.js"></script>
 <script type="text/javascript">
+    var str = window.sessionStorage;
     $(document).ready(function()
     {
         $.ajax({
             headers:{
-                "token":"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX25hbWUiOiLmlrDkurpfMDA4NTE2SkoiLCJleHAiOjE1OTk3NzkxMjN9.F2eRflcNT57n18w3WsPBJFdESP12CraGPMiWr9rAWGw",
+                "token":str.getItem("token"),
             },
             url:'http://localhost:8090/miniProgram/index/list?page=1',
             type:'get',
