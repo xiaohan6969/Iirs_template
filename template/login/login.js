@@ -5,7 +5,7 @@ function login(){
         headers: {
             "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX25hbWUiOiLmlrDkurpfMDA4NTE2SkoiLCJleHAiOjE2MDAxMzA3Nzd9.gtOOxV2JlOkRHzbeYBwMWq_tVDWCSuMQetwB13l6fis"
         },
-        url: "http://wtthappy.xyz/mini/user/login/",
+        url: "http://localhost:8090/mini/user/login/",
         type: 'POST',
         contentType: "application/json",
         data:JSON.stringify({user_name:user_name,pass_word:password}),
