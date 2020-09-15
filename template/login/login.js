@@ -10,13 +10,16 @@ function login(){
         success: function (res) {
             console.log(res)
             console.log(res.token)
-            var storage = window.sessionStorage;
-            storage.setItem('token', res.token);
-            window.location.href='../index/index.html';
+            if (res.message=="Success"){
+                var storage = window.sessionStorage;
+                storage.setItem('token', res.token);
+                window.location.href='../index/index.html';
+            }
+            alert(res.message)
             // window.location.href="http://www.baidu.com"; //在原有窗口打开
         },
         error: function (res) {
-            alert(res)
+            alert(res.message)
         }
     })
 }
