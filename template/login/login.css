@@ -11,6 +11,9 @@ body{
     margin: 0;
     background-color: #4A374A;
     /*background-color: #4A374A;*/
+    background-image: url("../login/img/013.jpg");
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
 }
 #login{
     position: absolute;

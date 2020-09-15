@@ -92,6 +92,9 @@ func (a *User) Login(ctx iris.Context) iris.Map {
 	if err != nil {
 		return response.FailResponse(struct{}{}, err)
 	}
+	if values.PassWord == msg.Empty{
+		return response.FailResponse(struct{}{}, errors.New(msg.Msg10))
+	}
 	token, err = userModel.LoginModel(values.UserName, values.PassWord)
 	if err != nil {
 		return response.FailResponse(struct{}{}, err)
@@ -113,11 +116,14 @@ func (a *User) RegisterNewUser(ctx iris.Context) iris.Map {
 	if err != nil {
 		return response.FailResponse(struct{}{}, err)
 	}
-	if values.PassWord == msg.Empty{
+	if values.PassWord == msg.Empty || values.UserName == msg.Empty{
 		return response.FailResponse(struct{}{}, errors.New(msg.Msg10))
 	}
-	if len(values.PassWord) > 10 {
+	if len(values.PassWord) > 12 || len(values.PassWord) < 8{
 		return response.FailResponse(struct{}{}, errors.New(msg.Msg1))
+	}
+	if len(values.UserName) > 10 || len(values.PassWord) < 3{
+		return response.FailResponse(struct{}{}, errors.New(msg.Msg11))
 	}
 	err = userModel.RegisterNewUserModel(values.UserName, values.PassWord)
 	if err != nil {
