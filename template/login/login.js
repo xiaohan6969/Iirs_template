@@ -21,3 +21,6 @@ function login(){
     })
 }
 
+function Register(){
+    window.location.href='../register/register.html';
+}

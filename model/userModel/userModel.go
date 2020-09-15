@@ -7,6 +7,7 @@ import (
 	"../../server/mysqlServer"
 	"../commonStruct"
 	"errors"
+	"fmt"
 )
 
 func WxProgramLogin(openid string) (commonStruct.User, string, error) {

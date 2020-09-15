@@ -58,4 +58,30 @@ input{
     line-height: normal;
     border-radius: 5px;
     margin: 0;
-}  
+}
+/*.reg{*/
+/*    margin-right:20px;*/
+/*    float: right;*/
+/*    !*text-align: right;*!*/
+/*    width: 49px;*/
+/*    height: 33px;*/
+/*    background-color: #c79e22;*/
+/*    border: 1px solid #3762bc;*/
+/*    color: #ffffff;*/
+/*    !*padding: 9px 14px;*!*/
+/*    !*font-size: 15px;*!*/
+/*}*/
+.reg{
+    margin-right:20px;
+    float: right;
+    width: 60px;
+    min-height: 20px;
+    display: block;
+    background-color: #4a77d4;
+    border: 1px solid #3762bc;
+    color: #ffffff;
+    padding: 9px 14px;
+    font-size: 9px;
+    line-height: normal;
+    border-radius: 5px;
+}

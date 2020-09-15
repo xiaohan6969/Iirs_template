@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="register.css">
+    <title>注册界面</title>
+</head>
+<body>
+<form action="" method="" onsubmit="">
+    <table border="60" align="center" width="50%">
+        <caption>用户注册</caption>
+        <tr>
+            <td align="right">
+                <sup><font color="red">*</font></sup>用户名：
+            </td>
+            <td>
+                <input type="text" name="username" id="user_name" class="input_class" />
+                <span id="username_span">用户名由3-5个字符组成</span></td>
+
+        </tr>
+        <tr>
+            <td align="right">
+                <sup><font color="red">*</font></sup>密码：
+            </td>
+            <td>
+                <input type="password" name="password" id="password" class="input_class" />
+                <span id="password_span">请输入8-12位密码</span>
+            </td>
+        </tr>
+        <tr>
+            <td align="right">
+                <sup><font color="red">*</font></sup>省份：
+            </td>
+            <td><select name="province" id="province" onblur="checkProvince(this)">
+                    <option value="--请选择--">--请选择--</option>
+                    <option value="四川">四川</option>
+                    <option value="上海">上海</option>
+                    <option value="北京">北京</option>
+                    <option value="广东">广东</option>
+                    <option value="广西">广西</option>
+                    <option value="海南">海南</option>
+                    <option value="湖南">湖南</option>
+                    <option value="湖北">湖北</option>
+                    <option value="云南">云南</option>
+                    <option value="贵州">贵州</option>
+                </select><span id="province_span">请选择省份</span></td>
+        </tr>
+        <tr>
+            <td align="center" colspan="2">  <!-- 合并两列 -->
+                <input type="button" class="aaa" value="注册" onclick="Jump()"/>
+                <input type="reset" class="aaa" value="重置" />
+            </td>
+        </tr>
+    </table>
+
+
+
+</form>
+<script src="http://libs.baidu.com/jquery/2.0.0/jquery.min.js"></script>
+<script type="text/javascript" src="./register.js" ></script>
+</body>
+</html>

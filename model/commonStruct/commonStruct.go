@@ -20,7 +20,7 @@ type User struct {
 	UserSex    string `json:"user_sex" gorm:"type:varchar(128);not null;"`        //性别
 	CreateTime string `json:"create_time" gorm:"type:varchar(128);not null;"`     //创建时间
 	Token      string `json:"token" gorm:"type:varchar(256);default:''"`          //token
-	OpenId     string `json:"open_id" gorm:"type:varchar(128);unique;"`           // 小程序Openid
+	OpenId     string `json:"open_id" gorm:"type:varchar(128);default:''"`           // 小程序Openid
 }
 
 type WxApp struct {

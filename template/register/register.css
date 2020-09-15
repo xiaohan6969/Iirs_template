@@ -1,0 +1,28 @@
+span style{
+    font-size:14px;
+}
+
+.input_class {  /*设置class属性名称为input_class的标签内容*/
+     width:250px;
+     height:16px;
+}
+body{
+    width: 100%;
+    height: 100%;
+    font-family: 'Open Sans',sans-serif;
+    margin: 0;
+    background-color: #ffffff;
+    /*background-color: #4A374A;*/
+}
+caption{        /*设置caption标签内容*/
+    font-size:30px;
+    color: #000000;
+    text-shadow: #06d7de 6px 0px 5px;
+    font-stretch: wider;
+    font-weight: 900;
+}
+
+.aaa{          /*设置class属性名称为aaa的标签内容*/
+    font-size:16px;
+    font-weight: bold;
+}
