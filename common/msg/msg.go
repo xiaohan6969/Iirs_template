@@ -10,5 +10,7 @@ const (
 	Msg7      = "新人_"
 	Msg8      = "Error 1054"
 	Msg9      = "123456"
+	Msg10      = "密码不能为空"
+	Empty      = ""
 	QueryNull = "查询结果为空"
 )

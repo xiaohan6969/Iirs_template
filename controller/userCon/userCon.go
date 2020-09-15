@@ -113,6 +113,9 @@ func (a *User) RegisterNewUser(ctx iris.Context) iris.Map {
 	if err != nil {
 		return response.FailResponse(struct{}{}, err)
 	}
+	if values.PassWord == msg.Empty{
+		return response.FailResponse(struct{}{}, errors.New(msg.Msg10))
+	}
 	if len(values.PassWord) > 10 {
 		return response.FailResponse(struct{}{}, errors.New(msg.Msg1))
 	}
