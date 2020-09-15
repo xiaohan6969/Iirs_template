@@ -10,12 +10,13 @@ function login(){
         success: function (res) {
             console.log(res)
             console.log(res.token)
-            if (res.message=="Success"){
+            if (res.message=="SUCCESS"){
                 var storage = window.sessionStorage;
                 storage.setItem('token', res.token);
                 window.location.href='../index/index.html';
+            }else {
+                alert(res.message)
             }
-            alert(res.message)
             // window.location.href="http://www.baidu.com"; //在原有窗口打开
         },
         error: function (res) {

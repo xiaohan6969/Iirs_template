@@ -9,7 +9,11 @@ function Jump(){
         data:JSON.stringify({user_name:user_name,pass_word:password}),
         success: function (res) {
             console.log(res)
-            window.location.href='../login/login.html';
+            if (res.message=="SUCCESS"){
+                window.location.href='../login/login.html';
+            }else {
+                alert(res.message)
+            }
         },
         error: function (res) {
             console.log(res)
