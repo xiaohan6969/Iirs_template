@@ -10,6 +10,7 @@ body{
     font-family: 'Open Sans',sans-serif;
     margin: 0;
     background-color: #4A374A;
+    /*background-color: #4A374A;*/
 }
 #login{
     position: absolute;

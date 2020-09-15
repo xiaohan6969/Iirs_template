@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" type="text/css" href="index.css"/>
+    <title>Document</title>
+</head>
+<body>
+<div>
+    <table  border="1" cellpadding="10" cellspacing="10" class="first" >
+    </table>
+</div>
+<script src="http://libs.baidu.com/jquery/2.0.0/jquery.min.js"></script>
+<script type="text/javascript">
+    var str = window.sessionStorage;
+    $(document).ready(function()
+    {
+        $.ajax({
+            headers:{
+                "token":str.getItem("token"),
+            },
+            url:str.getItem("domain_name")+'/miniProgram/index/list?page=1',
+            type:'get',
+            success: function (res) {
+                // console.log(res)
+
+                var result = "<tr>" +
+                    "\n<th>标题</th>" +
+                    "\n<th>内容</th>" +
+                    "\n<th>首页图片</th>" +
+                    "\n<th>用户名</th>" +
+                    "\n<th>创建时间</th>" +
+                    "\n </tr>"
+                var str = ''
+                for(let i=0;i<res.data.length;i++) {
+                    str = '<tr>'+`<td>${res.data[i].title}</td>
+                         <td>${res.data[i].content}</td>
+                         <td>${res.data[i].index_img}</td>
+                         <td>${res.data[i].user_name}</td>
+                         <td>${res.data[i].create_time}</td>
+                        `+'</tr>'
+                        result += str
+                }
+                console.log(result)
+                $(".first").html(result)
+            },
+            error:function (res){
+                alert(res.var())
+            }
+        });
+    });
+</script>
+</body>
+</html>

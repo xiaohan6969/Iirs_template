@@ -5,6 +5,11 @@
     <title>Login</title>
     <link rel="stylesheet" type="text/css" href="login.css"/>
     <!--引入外部的js文件-->
+    <script>
+        var storage = window.sessionStorage;
+        storage.setItem('domain_name', "http://wtthappy.xyz");
+        // storage.setItem('domain_name', "http://127.0.0.1:8090");
+    </script>
 </head>
 <body>
 <div>
@@ -21,9 +26,6 @@
 </div>
 <script src="http://libs.baidu.com/jquery/2.0.0/jquery.min.js"></script>
 <script type="text/javascript" src="./login.js" ></script>
-<script>
-    var storage = window.sessionStorage;
-    storage.setItem('url_url', "http://wtthappy.xyz");
-</script>
+
 </body>
 </html>
