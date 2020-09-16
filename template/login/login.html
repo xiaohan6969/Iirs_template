@@ -5,30 +5,37 @@
     <title>登录</title>
     <link rel="stylesheet" type="text/css" href="login.css"/>
     <!--引入外部的js文件-->
-    <script>
-        var storage = window.sessionStorage;
-        // storage.setItem('domain_name', "http://wtthappy.xyz");
-        storage.setItem('domain_name', "http://127.0.0.1:8090");
-    </script>
-    <button class="reg" type="button" onclick="Register() ">
-        <i >注册</i>
-    </button>
 </head>
 <body>
-<div>
-    <p class="title"></p>
-    <ul class="content"></ul>
-</div>
 <div id="login">
-    <h1>Login</h1>
+    <h1 class="titleLogin">Login</h1>
+    <!-- <h1 class="titleReg">Register</h1> -->
     <form method="post">
         <input type="text" required="required" placeholder="用户名" id="user_name" name="u"></input>
         <input type="password" required="required" placeholder="密码" id="password" name="p"></input>
-        <button class="but" type="button" onclick="login()" >登录</button>
+        <div class="button">
+            <button class="reg" type="button" onclick="Register() ">注册</button>
+            <button class="but" type="button" onclick="login()" >登录</button>
+        </div>
     </form>
 </div>
+<!--鼠标特效-->
+<script src="https://blog-static.cnblogs.com/files/ophxc/shubiao.js"></script>
+<canvas width="1777" height="841" style="position: fixed; left: 0px; top: 0px; z-index: 2147483647; pointer-events: none;"></canvas>
+<!--鼠标特效 end-->
+<!-- Music-->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aplayer@1.10.0/dist/APlayer.min.css">
+<script src="https://blog-static.cnblogs.com/files/zouwangblog/APlayer.min.js"></script>
+<script src="https://unpkg.com/meting@1.2/dist/Meting.min.js"></script>
+<div id="player" class="aplayer aplayer-withlist aplayer-fixed" data-id="2878443703" data-server="netease" data-type="playlist" data-order="random" data-fixed="true" data-listfolded="true" data-theme="orange"></div>
+<!-- Music end -->
 <script src="http://libs.baidu.com/jquery/2.0.0/jquery.min.js"></script>
 <script type="text/javascript" src="./login.js" ></script>
-
+<script>
+    var storage = window.sessionStorage;
+    // storage.setItem('domain_name', "http://wtthappy.xyz");
+    storage.setItem('domain_name', "http://122.51.54.111:8090");
+    // storage.setItem('domain_name', "http://127.0.0.1:8090");
+</script>
 </body>
 </html>

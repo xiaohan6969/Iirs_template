@@ -34,3 +34,16 @@ div{
     width: 49px;
     height: 33px;
 }
+.user_logout{
+    margin-right:20px;
+    float: right;
+    width: 150px;
+    min-height: 20px;
+    background-color: #4a77d4;
+    border: 1px solid #3762bc;
+    color: #dbdb61;
+    padding: 9px 14px;
+    font-size: 15px;
+    line-height: normal;
+    border-radius: 5px;
+}

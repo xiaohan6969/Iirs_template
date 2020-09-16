@@ -1,67 +1,48 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-
-    <meta charset="utf-8" />
-    <title>HTML引入JS/CSS的三种方式</title>
-    <!--引入外部的css文件-->
-    <link rel="stylesheet" href="./index.css" />
-
-    <!--引入外部的js文件-->
-    <script type="text/javascript" src="./index.js" ></script>
-
-
-    <!--在head中添加js控制-->
-    <script type="text/javascript">
-        function onClickB1() {
-            document.getElementById("b1").innerHTML = "HEAD";
-        }
-    </script>
-
-
-    <!--在head中添加css修饰-->
-    <style type="text/css">
-        #j2 {
-            background-color: #808080;
-        }
-    </style>
-
+    <meta charset="UTF-8">
+    <title>test1</title>
 </head>
+<body background="http://img4.imgtn.bdimg.com/it/u=1806795254,1936125128">
+<form action="login.php" method="post">
+    <fieldset>
+        <!--fieldest 组合表单中的相关元素 其中legend是该表中的标题-->
+        <legend>用户登录</legend>
+        <ul>
+            <li>
+                <label>username:</label>
+                <input type="text" name="username">
+            </li>
+            <li>
+                <label>password:</label>
+                <input type="password" name="password">
+            </li>
+            <li>
+                <label></label>
+                <input type="checkbox" name="rem" value="yes">in the next week ,auto login
+            </li>
+            <li>
+                <label> </label>
+                <input type="submit" name="login" value="登录">
+            </li>
+        </ul>
+    </fieldset>
+</form>
 
-<body bgcolor="#F5F5F5">
-<div id="j1" class="divs">
-    <button id="b1" onclick="onClickB1()">在head中</button>
-    <p>方式一：将js代码写在head中，如本例所示，点击按钮改变按钮的内容！</p>
-    <p>
-        同理，也可以将css样式写在head中，如上面的代码所示，设置j2的背景色，这里需要注意的是，其实我在外部的css文件中也设置了j2的背景色，
-        所以这两处设置是冲突的，但实验证明，网页中显示的是在head中修饰的属性值，这也许就是近水楼台先得月吧！
-    </p>
-</div>
-<div id="j2" class="divs">
-<button id="b2" onclick="onClickJ2()">在body中</button>
-<p>方式二：将js代码写在body中，如本例所示，点击按钮改变div的背景色！</p>
-<p>同理，在html的body中也可以设置css样式，代码如下面所示，设置b3的文字颜色为红色。</p>
-</div>
-<div id="j3" class="divs">
-    <button id="b3" onclick="gaiBian()">在外部js中</button>
-    <p>方式三：将js代码写在外部js文件中，并在html文件的head中引入该js，在本例中，点击按钮改变按钮的内容，并改变div的颜色！【推荐】</p>
-    <p>当然，将css通过外部文件的方式引入html是最好的，也是推荐的方式。【推荐】</p>
-
-    <p style="background: red;"><strong>这里需要注意的是，和js不同的是，css可以直接写在组件的内部，例如在此，我将文字直接加粗,背景变红！</strong></p>
-</div>
+<!--鼠标特效-->
+<script src="https://blog-static.cnblogs.com/files/ophxc/shubiao.js"></script>
+<canvas width="1777" height="841" style="position: fixed; left: 0px; top: 0px; z-index: 2147483647; pointer-events: none;"></canvas>
+<!--鼠标特效 end-->
 
 
-<!--在body中添加js控制-->
-<script type="text/javascript">
-    function onClickJ2 () {
-        document.getElementById("j2").style.background = "red";
-    }
-</script>
+<!-- Music-->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aplayer@1.10.0/dist/APlayer.min.css">
+<script src="https://blog-static.cnblogs.com/files/zouwangblog/APlayer.min.js"></script>
+<script src="https://unpkg.com/meting@1.2/dist/Meting.min.js"></script>
+<div id="player" class="aplayer aplayer-withlist aplayer-fixed" data-id="2878443703" data-server="netease" data-type="playlist" data-order="random" data-fixed="true" data-listfolded="true" data-theme="orange"></div>
+<!-- Music end -->
 
-<style type="text/css">
-    #b3 {
-        color: red;
-    }
-</style>
+<img src="http://www.4kbizhi.com/d/file/2020/01/12/small00383295ltt1578760712.jpg" class="desc_img">
 </body>
 </html>
