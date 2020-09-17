@@ -10,7 +10,7 @@ function Jump(){
         success: function (res) {
             console.log(res)
             if (res.message=="SUCCESS"){
-                window.location.href='../hl/login.html';
+                window.location.href='../htmlTem/login.html';
             }else {
                 alert(res.message)
             }

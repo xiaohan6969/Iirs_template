@@ -11,7 +11,7 @@ import (
 var (
 	deleteFileOnExit = config.Config.Get("log.deleteFileOnExit").(bool)
 	osName           = config.Config.Get("log.osName").(string)
-	//excludeExtensions = [...]string{".js",".css",".jpg",".png",".ico",".svg",}
+	//excludeExtensions = [...]string{".jsTem",".cssTem",".jpg",".png",".ico",".svg",}
 )
 
 //根据日期获取文件名，文件日志以最常用的方式工作

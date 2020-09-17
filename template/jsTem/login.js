@@ -3,7 +3,7 @@ function login(){
     var password  = $("#password").val();
     var str = window.sessionStorage;
     $.ajax({
-        url: str.getItem("domain_name")+"/mini/user/login/",
+        url: str.getItem("domain_name")+"/mini/user/login",
         type: 'POST',
         contentType: "application/json",
         data:JSON.stringify({user_name:user_name,pass_word:password}),
@@ -14,7 +14,7 @@ function login(){
                 var storage = window.sessionStorage;
                 storage.setItem('token', res.token);
                 storage.setItem('user_name', user_name);
-                window.location.href='../hl/index.html';
+                window.location.href='../htmlTem/index.html';
             }else {
                 alert(res.message)
             }
@@ -27,5 +27,5 @@ function login(){
 }
 
 function Register(){
-    window.location.href='../hl/register.html';
+    window.location.href='../htmlTem/register.html';
 }
