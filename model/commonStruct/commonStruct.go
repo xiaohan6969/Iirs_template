@@ -3,7 +3,7 @@ package commonStruct
 type HomePage struct {
 	Id         int    `json:"id,omitempty" gorm:"primary_key"`
 	Title      string `json:"title" gorm:"type:varchar(20);"`
-	Content    string `json:"content" gorm:"type:varchar(20);"`
+	Content    string `json:"content" gorm:"type:varchar(256);"`
 	CreateTime string `json:"create_time" gorm:"type:varchar(20);"`
 	ImageList  string `json:"image_list" gorm:"type:varchar(20);"`
 	IndexImg   string `json:"index_img" gorm:"type:varchar(20);"`

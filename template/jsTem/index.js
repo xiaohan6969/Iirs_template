@@ -36,5 +36,5 @@ function Index(){
 
 function UserMsg(){
     var str = window.sessionStorage;
-    $(".user_logout").html(str.getItem("user_name"));
+    $(".user_logout").html("亲爱的 "+str.getItem("user_name"));
 }
