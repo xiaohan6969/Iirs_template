@@ -14,7 +14,7 @@ function login(){
                 var storage = window.sessionStorage;
                 storage.setItem('token', res.token);
                 storage.setItem('user_name', user_name);
-                window.location.href='../index/index.html';
+                window.location.href='../hl/index.html';
             }else {
                 alert(res.message)
             }
@@ -27,5 +27,5 @@ function login(){
 }
 
 function Register(){
-    window.location.href='../register/register.html';
+    window.location.href='../hl/register.html';
 }

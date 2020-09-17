@@ -13,7 +13,7 @@ function InsertMemo(){
         success: function (res) {
             console.log(res);
             if (res.message=="SUCCESS"){
-                window.location.href='../index/index.html';
+                window.location.href='../hl/index.html';
             }else {
                 alert(res.message)
             }
