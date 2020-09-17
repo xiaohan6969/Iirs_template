@@ -34,7 +34,7 @@ func main() {
 
 	//控制台信息
 	app.Logger().SetLevel(SET_LEVEl)
-
+	
 	//初始化路由
 	app = router.Router()
 

@@ -7,7 +7,7 @@ func SuccessResponse(res interface{}) iris.Map {
 	return iris.Map{
 		"status":  200,
 		"data":    res,
-		"message": "Success",
+		"message": "SUCCESS",
 		"token":   "",
 	}
 }

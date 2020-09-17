@@ -1,0 +1,57 @@
+body {
+    background-image: url("./img/watercolor.png");
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+    text-align: center;
+    padding:100px 100px;
+    font:13px/150% Verdana,
+    Tahoma, sans-serif;
+}
+
+/* tutorial */
+
+textarea {
+    padding: 9px;
+    border: solid 1px #E5E5E5;
+    outline: 0;
+    font: normal 13px/100% Verdana, Tahoma, sans-serif;
+    width: 200px;
+    background: -webkit-gradient(linear, left top, left 25, from(#FFFFFF), color-stop(4%, #EEEEEE), to(#FFFFFF));
+    background: -moz-linear-gradient(top, #FFFFFF, #EEEEEE 1px, #FFFFFF 25px);
+    box-shadow: rgba(0,0,0, 0.1) 0px 0px 8px;
+    -moz-box-shadow: rgba(0,0,0, 0.1) 0px 0px 8px;
+    -webkit-box-shadow: rgba(0,0,0, 0.1) 0px 0px 8px;
+}
+
+
+textarea {
+    width: 400px;
+    max-width: 400px;
+    height: 190px;
+    line-height: 150%;
+}
+.tit{
+    width: 450px;
+    max-width: 400px;
+    height: 50px;
+    line-height: 150%;
+}
+.form {
+    margin-top:30px;
+    margin-bottom:auto;
+    margin-left:auto;
+    margin-right:auto;
+    font-size: 16px;
+    color: #0632a8;
+}
+
+.submit button {
+    width: auto;
+    padding: 9px 15px;
+    background: #617798;
+    border: 0;
+    font-size: 14px;
+    color: #FFFFFF;
+    -moz-border-radius: 5px;
+    -webkit-border-radius: 5px;
+}

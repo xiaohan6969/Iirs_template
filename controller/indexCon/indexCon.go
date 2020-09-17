@@ -65,6 +65,7 @@ func (a *SqlNature) UpdateOneContent(ctx iris.Context) iris.Map {
 func (a *SqlNature) FindIndexList(ctx iris.Context) iris.Map {
 	var (
 		err     error
+		UserName string
 		result  = []commonStruct.HomePage{}
 		page, _ = ctx.URLParamInt("page")
 		size, _ = ctx.URLParamInt("size")
@@ -75,7 +76,8 @@ func (a *SqlNature) FindIndexList(ctx iris.Context) iris.Map {
 	if size == -1 {
 		size = 10
 	}
-	result, err = indexModel.IndexListModel(page, size)
+	UserName = ctx.Values().Get("user_name").(string)
+	result, err = indexModel.IndexListModel(page, size,UserName)
 	if err != nil {
 		return response.FailResponse(result, err)
 	}

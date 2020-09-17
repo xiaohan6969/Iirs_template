@@ -13,13 +13,13 @@ var (
 )
 
 //查询备忘录列表
-func IndexListModel(page, size int) ([]commonStruct.HomePage, error) {
+func IndexListModel(page, size int,UserName string) ([]commonStruct.HomePage, error) {
 	var (
 		db  = mysqlServer.JzGorm
 		res = &[]commonStruct.HomePage{}
 	)
 	err := db.Table(tOne).
-		Where("status = 1").
+		Where("status = 1 AND user_name = ?",UserName).
 		Limit(strconv.Itoa(size)).
 		Offset(strconv.Itoa((page - 1) * size)).
 		Order("create_time DESC").
