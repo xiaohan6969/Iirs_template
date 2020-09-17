@@ -8,7 +8,7 @@ type HomePage struct {
 	ImageList  string `json:"image_list" gorm:"type:varchar(20);"`
 	IndexImg   string `json:"index_img" gorm:"type:varchar(20);"`
 	Rgb        string `json:"rgb" gorm:"type:varchar(20);"`
-	Status     int    `json:"status,omitempty" gorm:"type:int;default:1"`
+	Status     int    `json:"status,omitempty" gorm:"type:int;default:game"`
 	UserName   string `json:"user_name" gorm:"type:varchar(20);not null;"` //名称
 }
 

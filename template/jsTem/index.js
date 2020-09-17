@@ -4,7 +4,7 @@ function Index(){
         headers:{
             "token":str.getItem("token"),
         },
-        url:str.getItem("domain_name")+'/miniProgram/index/list?page=1',
+        url:str.getItem("domain_name")+'/miniProgram/index/list?page=game',
         type:'get',
         success: function (res) {
             // console.log(res)

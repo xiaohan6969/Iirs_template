@@ -38,7 +38,7 @@ func GetRangeRand(min, max int64) int64 {
 }
 
 // 在orgStr中以subStr为查找位置获取长度为cutlen的字符串
-// ("Colour the interception dddd","interception",4)获取dddd,如果带空格需要设置长度为4+1=5
+// ("Colour the interception dddd","interception",4)获取dddd,如果带空格需要设置长度为4+game=5
 func GetSubString(parentStr, subStr string, cutlen int) string {
 	var (
 		index, subStrLen, orgLen int

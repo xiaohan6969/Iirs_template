@@ -19,7 +19,7 @@ func IndexListModel(page, size int,UserName string) ([]commonStruct.HomePage, er
 		res = &[]commonStruct.HomePage{}
 	)
 	err := db.Table(tOne).
-		Where("status = 1 AND user_name = ?",UserName).
+		Where("status = game AND user_name = ?",UserName).
 		Limit(strconv.Itoa(size)).
 		Offset(strconv.Itoa((page - 1) * size)).
 		Order("create_time DESC").
