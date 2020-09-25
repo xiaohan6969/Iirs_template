@@ -1,11 +1,13 @@
 package main
 
 import (
+	"./common/msg"
 	"./config"
 	"./log"
 	"./middleware/unusual"
 	"./model"
 	"./router"
+	"fmt"
 	"github.com/kataras/iris"
 	"io"
 	"os"
@@ -34,10 +36,10 @@ func main() {
 
 	//控制台信息
 	app.Logger().SetLevel(SET_LEVEl)
-	
+
 	//初始化路由
 	app = router.Router()
-
+	fmt.Println(msg.Msg1)
 	//端口绑定
 	error.Error(app.Run(iris.Addr(PORT)))
 }
